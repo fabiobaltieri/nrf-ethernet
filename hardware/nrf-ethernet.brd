@@ -1027,7 +1027,7 @@ BatchPCB compatible</description>
 <elements>
 <element name="J2" library="micrel" package="PJ-J0" value="J0026" x="14.6304" y="8.128" rot="R180"/>
 <element name="LED1" library="led" package="CHIPLED_0805" value="" x="62.7888" y="32.9184" rot="R90"/>
-<element name="LED3" library="led" package="CHIPLED_0805" value="" x="49.3776" y="32.9184" rot="R90"/>
+<element name="LED3" library="led" package="CHIPLED_0805" value="" x="47.5488" y="32.9184" rot="R90"/>
 <element name="S3" library="sparkfun" package="TACTILE_SWITCH_SMD" value="SWITCH" x="25.6032" y="30.8864" rot="R180"/>
 <element name="Y1" library="sparkfun" package="CRYSTAL-SMD-5X3" value="8MHz" x="41.2496" y="31.2928"/>
 <element name="U5" library="balto" package="SO08" value="MAX3051" x="31.496" y="5.08" rot="MR180"/>
@@ -1037,7 +1037,7 @@ BatchPCB compatible</description>
 <element name="R16" library="rcl" package="R0805" value="75" x="36.7792" y="10.5664" rot="MR90"/>
 <element name="R4" library="rcl" package="R0603" value="10k" x="56.2864" y="27.6352" rot="R180"/>
 <element name="R11" library="rcl" package="R0603" value="330" x="62.7888" y="32.9184" rot="MR0"/>
-<element name="R13" library="rcl" package="R0603" value="330" x="49.3776" y="32.9184" rot="MR0"/>
+<element name="R13" library="rcl" package="R0603" value="330" x="47.5488" y="32.9184" rot="MR0"/>
 <element name="U$4" library="SparkFun-Connectors" package="USB-MINIB" value="USB-MINIB-5PIN" x="45.5168" y="4.6736" rot="R90"/>
 <element name="C11" library="rcl" package="C0603" value="1p5" x="63.1952" y="16.4592"/>
 <element name="R3" library="rcl" package="R0603" value="22k" x="58.3184" y="20.1168" rot="R90"/>
@@ -1083,8 +1083,8 @@ BatchPCB compatible</description>
 <element name="LED4" library="led" package="CHIPLED_0805" value="" x="4.8768" y="32.9184" rot="R90"/>
 <element name="R5" library="rcl" package="R0603" value="330" x="2.4384" y="30.6832" rot="R90"/>
 <element name="C37" library="rcl" package="C0603" value=".1u" x="15.4432" y="11.5824" rot="MR270"/>
-<element name="LED5" library="led" package="CHIPLED_0805" value="" x="56.0832" y="32.9184" rot="R90"/>
-<element name="R6" library="rcl" package="R0603" value="330" x="56.0832" y="32.9184" rot="MR0"/>
+<element name="LED5" library="led" package="CHIPLED_0805" value="" x="52.2224" y="32.9184" rot="R90"/>
+<element name="R6" library="rcl" package="R0603" value="330" x="52.2224" y="32.9184" rot="MR0"/>
 <element name="R7" library="rcl" package="R0603" value="22" x="44.3992" y="10.7696" rot="R90"/>
 <element name="R8" library="rcl" package="R0603" value="22" x="45.8216" y="10.7696" rot="R90"/>
 <element name="C39" library="rcl" package="C0603" value=".1u" x="44.5008" y="5.4864" rot="MR225"/>
@@ -2213,21 +2213,21 @@ BatchPCB compatible</description>
 <signal name="N$6">
 <contactref element="LED3" pad="A"/>
 <contactref element="R13" pad="1"/>
-<wire x1="50.4276" y1="32.9184" x2="51.6128" y2="32.9184" width="0.254" layer="1"/>
-<via x="51.6128" y="32.9184" extent="1-16" drill="0.508"/>
-<wire x1="51.6128" y1="32.9184" x2="50.2276" y2="32.9184" width="0.254" layer="16"/>
+<wire x1="48.5988" y1="32.9184" x2="49.784" y2="32.9184" width="0.254" layer="1"/>
+<via x="49.784" y="32.9184" extent="1-16" drill="0.508"/>
+<wire x1="49.784" y1="32.9184" x2="48.3988" y2="32.9184" width="0.254" layer="16"/>
 </signal>
 <signal name="N$12">
 <contactref element="LED5" pad="A"/>
 <contactref element="R6" pad="1"/>
-<wire x1="56.9332" y1="32.9184" x2="58.3184" y2="32.9184" width="0.254" layer="16"/>
-<via x="58.3184" y="32.9184" extent="1-16" drill="0.508"/>
-<wire x1="58.3184" y1="32.9184" x2="57.1332" y2="32.9184" width="0.254" layer="1"/>
+<wire x1="53.0724" y1="32.9184" x2="54.4576" y2="32.9184" width="0.254" layer="16"/>
+<via x="54.4576" y="32.9184" extent="1-16" drill="0.508"/>
+<wire x1="54.4576" y1="32.9184" x2="53.2724" y2="32.9184" width="0.254" layer="1"/>
 </signal>
 <signal name="LED_B">
 <contactref element="R13" pad="2"/>
 <contactref element="U6" pad="4"/>
-<wire x1="48.5276" y1="32.9184" x2="45.9232" y2="32.9184" width="0.2032" layer="16"/>
+<wire x1="46.6988" y1="32.9184" x2="45.9232" y2="32.9184" width="0.2032" layer="16"/>
 <wire x1="45.9232" y1="32.9184" x2="44.2976" y2="31.2928" width="0.2032" layer="16"/>
 <wire x1="44.2976" y1="31.2928" x2="44.2976" y2="28.6512" width="0.2032" layer="16"/>
 <via x="41.0464" y="26.416" extent="1-16" drill="0.508"/>
@@ -2240,8 +2240,8 @@ BatchPCB compatible</description>
 <signal name="LED_A">
 <contactref element="R6" pad="2"/>
 <contactref element="U6" pad="3"/>
-<wire x1="55.2332" y1="32.9184" x2="54.2172" y2="31.9024" width="0.2032" layer="16"/>
-<wire x1="54.2172" y1="31.9024" x2="45.5168" y2="31.9024" width="0.2032" layer="16"/>
+<wire x1="51.3724" y1="32.9184" x2="50.3564" y2="31.9024" width="0.2032" layer="16"/>
+<wire x1="50.3564" y1="31.9024" x2="45.5168" y2="31.9024" width="0.2032" layer="16"/>
 <wire x1="45.5168" y1="31.9024" x2="44.704" y2="31.0896" width="0.2032" layer="16"/>
 <wire x1="44.704" y1="31.0896" x2="44.704" y2="28.448" width="0.2032" layer="16"/>
 <via x="42.0624" y="25.8064" extent="1-16" drill="0.508"/>
