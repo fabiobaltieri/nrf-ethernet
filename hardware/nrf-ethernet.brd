@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="8" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="2" altunitdist="mil" altunit="mil"/>
+<grid distance="8" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="2" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -1080,8 +1080,8 @@ BatchPCB compatible</description>
 <element name="C5" library="rcl" package="C0603" value=".1u" x="3.4544" y="18.288" rot="R180"/>
 <element name="C16" library="rcl" package="C0603" value="18p" x="17.8816" y="21.5392" rot="R90"/>
 <element name="C31" library="rcl" package="C0603" value="18p" x="16.4592" y="25.8064"/>
-<element name="LED4" library="led" package="CHIPLED_0805" value="" x="4.8768" y="32.9184" rot="R90"/>
-<element name="R5" library="rcl" package="R0603" value="330" x="2.4384" y="30.6832" rot="R90"/>
+<element name="LED4" library="led" package="CHIPLED_0805" value="" x="7.5184" y="32.9184" rot="R90"/>
+<element name="R5" library="rcl" package="R0603" value="330" x="2.4384" y="31.0896" rot="R90"/>
 <element name="C37" library="rcl" package="C0603" value=".1u" x="15.4432" y="11.5824" rot="MR270"/>
 <element name="LED5" library="led" package="CHIPLED_0805" value="" x="52.2224" y="32.9184" rot="R90"/>
 <element name="R6" library="rcl" package="R0603" value="330" x="52.2224" y="32.9184" rot="MR0"/>
@@ -1713,7 +1713,7 @@ BatchPCB compatible</description>
 <wire x1="0.6096" y1="17.4752" x2="0.6096" y2="26.8224" width="0.4064" layer="16"/>
 <wire x1="0.6096" y1="26.8224" x2="1.016" y2="27.2288" width="0.4064" layer="16"/>
 <wire x1="1.016" y1="27.2288" x2="0.6096" y2="27.6352" width="0.4064" layer="16"/>
-<wire x1="0.6096" y1="27.6352" x2="0.6096" y2="31.0896" width="0.4064" layer="16"/>
+<wire x1="0.6096" y1="27.6352" x2="0.6096" y2="32.512" width="0.4064" layer="16"/>
 <wire x1="6.9088" y1="4.8768" x2="4.8768" y2="6.9088" width="0.4064" layer="16"/>
 <wire x1="4.8768" y1="6.9088" x2="1.8288" y2="6.9088" width="0.4064" layer="16"/>
 <wire x1="1.8288" y1="6.9088" x2="0.6096" y2="8.128" width="0.4064" layer="16"/>
@@ -1721,11 +1721,9 @@ BatchPCB compatible</description>
 <wire x1="0.6096" y1="16.6624" x2="1.016" y2="17.0688" width="0.4064" layer="16"/>
 <wire x1="1.016" y1="17.0688" x2="0.6096" y2="17.4752" width="0.4064" layer="16"/>
 <wire x1="3.4544" y1="17.0688" x2="1.016" y2="17.0688" width="0.4064" layer="16"/>
-<wire x1="5.9268" y1="32.9184" x2="5.9268" y2="31.53" width="0.4064" layer="1"/>
-<wire x1="5.9268" y1="31.53" x2="5.8928" y2="31.496" width="0.4064" layer="1"/>
-<via x="5.8928" y="31.496" extent="1-16" drill="0.508"/>
-<wire x1="0.6096" y1="31.0896" x2="1.016" y2="31.496" width="0.4064" layer="16"/>
-<wire x1="1.016" y1="31.496" x2="5.8928" y2="31.496" width="0.4064" layer="16"/>
+<via x="9.9568" y="32.9184" extent="1-16" drill="0.508"/>
+<wire x1="0.6096" y1="32.512" x2="1.016" y2="32.9184" width="0.4064" layer="16"/>
+<wire x1="1.016" y1="32.9184" x2="9.9568" y2="32.9184" width="0.4064" layer="16"/>
 <wire x1="9.5504" y1="27.2288" x2="1.016" y2="27.2288" width="0.4064" layer="16"/>
 <wire x1="34.544" y1="1.016" x2="34.544" y2="5.4492" width="0.4064" layer="16"/>
 <wire x1="32.131" y1="6.643" x2="32.131" y2="7.6962" width="0.4064" layer="16"/>
@@ -1814,6 +1812,7 @@ BatchPCB compatible</description>
 <wire x1="40.2336" y1="23.5712" x2="39.8272" y2="23.1648" width="0.4064" layer="16"/>
 <wire x1="50.1904" y1="26.8224" x2="55.0672" y2="21.9456" width="0.4064" layer="16"/>
 <wire x1="46.902" y1="30.8864" x2="45.6828" y2="29.6672" width="0.4064" layer="1"/>
+<wire x1="9.9568" y1="32.9184" x2="8.5684" y2="32.9184" width="0.4064" layer="1"/>
 </signal>
 <signal name="N$3">
 <contactref element="L1" pad="2"/>
@@ -1972,7 +1971,7 @@ BatchPCB compatible</description>
 <wire x1="4.4076" y1="22.2116" x2="1.8288" y2="24.7904" width="0.2032" layer="1"/>
 <wire x1="1.8288" y1="24.7904" x2="1.8288" y2="27.2288" width="0.2032" layer="1"/>
 <wire x1="1.8288" y1="27.2288" x2="2.4384" y2="27.8384" width="0.2032" layer="1"/>
-<wire x1="2.4384" y1="27.8384" x2="2.4384" y2="29.8332" width="0.2032" layer="1"/>
+<wire x1="2.4384" y1="27.8384" x2="2.4384" y2="30.2396" width="0.2032" layer="1"/>
 </signal>
 <signal name="REXT">
 <contactref element="U1" pad="9"/>
@@ -2004,8 +2003,8 @@ BatchPCB compatible</description>
 <signal name="N$1">
 <contactref element="LED4" pad="C"/>
 <contactref element="R5" pad="2"/>
-<wire x1="3.8268" y1="32.9184" x2="2.4416" y2="31.5332" width="0.2032" layer="1"/>
-<wire x1="2.4416" y1="31.5332" x2="2.4384" y2="31.5332" width="0.2032" layer="1"/>
+<wire x1="5.4896" y1="31.9396" x2="6.4684" y2="32.9184" width="0.2032" layer="1"/>
+<wire x1="2.4384" y1="31.9396" x2="5.4896" y2="31.9396" width="0.2032" layer="1"/>
 </signal>
 <signal name="N$10">
 <contactref element="C3" pad="1"/>
@@ -2250,6 +2249,34 @@ BatchPCB compatible</description>
 <wire x1="44.704" y1="28.448" x2="42.0624" y2="25.8064" width="0.2032" layer="16"/>
 </signal>
 </signals>
+<errors>
+<approved hash="19,1,70664284405472b6"/>
+<approved hash="19,1,70c6422440947276"/>
+<approved hash="19,1,d896ea74e827dac5"/>
+<approved hash="19,1,b0c562276097b275"/>
+<approved hash="19,1,b06562876057b2b5"/>
+<approved hash="6,1,48cc815a8cb08e72"/>
+<approved hash="5,1,a8272306e568249a"/>
+<approved hash="5,1,6a08a66412cd2c3c"/>
+<approved hash="5,1,80daee5c10006356"/>
+<approved hash="5,1,d32d45abbbf730a1"/>
+<approved hash="19,1,2cf93c409b637a88"/>
+<approved hash="19,1,0181acd8fc746a61"/>
+<approved hash="19,1,b109fcb51b6800ac"/>
+<approved hash="5,1,214a8a93e37c1de0"/>
+<approved hash="5,1,ee1e91abb175abc2"/>
+<approved hash="5,1,1b11ad9753cbf89d"/>
+<approved hash="5,1,4528c0a4ff680e46"/>
+<approved hash="5,1,3effbefd96a416a6"/>
+<approved hash="5,1,a6f6d535a6371f6b"/>
+<approved hash="5,1,a6c82ef8d19f5f67"/>
+<approved hash="5,1,1d999547afa27b3b"/>
+<approved hash="5,1,3c3e23fb23440329"/>
+<approved hash="5,1,1f6e345f71ac2588"/>
+<approved hash="5,1,ca49aaf84ab635cb"/>
+<approved hash="6,16,7c6eb5b65af361ff"/>
+<approved hash="5,16,8d61398ed38a7911"/>
+</errors>
 </board>
 </drawing>
 </eagle>
