@@ -11395,7 +11395,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <text x="111.76" y="106.68" size="1.778" layer="97">Alternative:
 25MHz</text>
 <text x="15.24" y="147.32" size="1.778" layer="97" rot="MR0">GPIO</text>
-<text x="96.52" y="106.68" size="1.778" layer="97">GPIO</text>
+<text x="96.52" y="165.1" size="1.778" layer="97">GPIO</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -12223,9 +12223,9 @@ We've spent an enormous amount of time creating and checking these footprints an
 <pinref part="U5" gate="G$1" pin="SHDN"/>
 </segment>
 <segment>
-<pinref part="U6" gate="G$1" pin="PB14"/>
-<wire x1="76.2" y1="106.68" x2="93.98" y2="106.68" width="0.1524" layer="91"/>
-<label x="93.98" y="106.68" size="1.778" layer="95" rot="MR0"/>
+<label x="93.98" y="165.1" size="1.778" layer="95" rot="MR0"/>
+<wire x1="76.2" y1="165.1" x2="93.98" y2="165.1" width="0.1524" layer="91"/>
+<pinref part="U6" gate="G$1" pin="PA8"/>
 </segment>
 </net>
 <net name="USB_D-" class="0">
@@ -12986,6 +12986,26 @@ We've spent an enormous amount of time creating and checking these footprints an
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="104,1,279.4,248.92,U2,VDD,VCC,,,"/>
+<approved hash="104,1,269.24,213.36,U2,VSS,GND,,,"/>
+<approved hash="104,1,276.86,213.36,U2,VSS,GND,,,"/>
+<approved hash="104,1,281.94,213.36,U2,DVDD,N$15,,,"/>
+<approved hash="104,1,299.72,231.14,U2,VDD_PA,N$14,,,"/>
+<approved hash="104,1,276.86,248.92,U2,VDD,VCC,,,"/>
+<approved hash="104,1,274.32,248.92,U2,VDD,VCC,,,"/>
+<approved hash="104,1,274.32,213.36,U2,VSS,GND,,,"/>
+<approved hash="104,1,271.78,213.36,U2,VSS,GND,,,"/>
+<approved hash="104,1,266.7,213.36,U2,VSS,GND,,,"/>
+<approved hash="115,1,194.206,131.976,FRAME1,,,,,"/>
+<approved hash="115,1,190.822,80.01,LED1,,,,,"/>
+<approved hash="115,1,211.142,80.01,LED3,,,,,"/>
+<approved hash="115,1,371.162,105.41,LED4,,,,,"/>
+<approved hash="115,1,221.302,80.01,LED5,,,,,"/>
+<approved hash="115,1,221.657,136.965,JP1,,,,,"/>
+<approved hash="115,1,138.759,137.16,SJ1,,,,,"/>
+<approved hash="115,1,343.577,71.3147,JP2,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>
