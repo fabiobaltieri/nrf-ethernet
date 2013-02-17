@@ -11396,6 +11396,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 25MHz</text>
 <text x="15.24" y="147.32" size="1.778" layer="97" rot="MR0">GPIO</text>
 <text x="96.52" y="165.1" size="1.778" layer="97">GPIO</text>
+<text x="96.52" y="129.54" size="1.778" layer="97">GPIO</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
