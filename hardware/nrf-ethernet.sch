@@ -11209,7 +11209,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <part name="R35" library="rcl" deviceset="R-EU_" device="R0805" value="120"/>
 <part name="GND41" library="supply1" deviceset="GND" device=""/>
 <part name="GND42" library="supply1" deviceset="GND" device=""/>
-<part name="R36" library="rcl" deviceset="R-EU_" device="R0603" value="120"/>
+<part name="R36" library="rcl" deviceset="R-EU_" device="R0603" value="100k"/>
 <part name="GND43" library="supply1" deviceset="GND" device=""/>
 <part name="C34" library="rcl" deviceset="C-EU" device="C0603" value="100n"/>
 <part name="GND44" library="supply1" deviceset="GND" device=""/>
@@ -11261,8 +11261,8 @@ We've spent an enormous amount of time creating and checking these footprints an
 <part name="P+4" library="supply1" deviceset="VCC" device=""/>
 <part name="P+9" library="supply1" deviceset="VCC" device=""/>
 <part name="P+12" library="supply1" deviceset="VCC" device=""/>
-<part name="C29" library="rcl" deviceset="C-EU" device="C0603" value="16p"/>
-<part name="C30" library="rcl" deviceset="C-EU" device="C0603" value="16p"/>
+<part name="C29" library="rcl" deviceset="C-EU" device="C0603" value="18p"/>
+<part name="C30" library="rcl" deviceset="C-EU" device="C0603" value="18p"/>
 <part name="C6" library="rcl" deviceset="C-EU" device="C0603" value=".1u"/>
 <part name="C17" library="rcl" deviceset="C-EU" device="C0603" value=".1u"/>
 <part name="C18" library="rcl" deviceset="C-EU" device="C0603" value=".1u"/>
