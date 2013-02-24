@@ -22,8 +22,8 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
@@ -105,6 +105,9 @@
 <plain>
 <dimension x1="6.2992" y1="0" x2="53.4416" y2="-3.048" x3="-2.4384" y3="-1.524" textsize="1.778" layer="20" dtype="vertical"/>
 <rectangle x1="54.2544" y1="15.0368" x2="55.88" y2="16.6624" layer="29"/>
+<text x="68.2752" y="15.0368" size="1.778" layer="121" rot="SR270">FB2013</text>
+<text x="67.056" y="15.0368" size="1.016" layer="121" rot="SR270">nrf-ethernet</text>
+<text x="67.056" y="3.8608" size="1.016" layer="121" rot="SR270">rev0</text>
 </plain>
 <libraries>
 <library name="balto">
@@ -1253,6 +1256,31 @@ BatchPCB compatible</description>
 <wire x1="14.4272" y1="26.6192" x2="14.224" y2="26.416" width="0.2032" layer="1"/>
 <wire x1="37.7952" y1="33.3248" x2="44.704" y2="33.3248" width="0.2032" layer="1"/>
 <wire x1="44.704" y1="33.3248" x2="37.7952" y2="33.3248" width="0.2032" layer="16"/>
+<via x="66.04" y="13.4112" extent="1-16" drill="0.508"/>
+<via x="66.04" y="11.7856" extent="1-16" drill="0.508"/>
+<via x="66.04" y="10.16" extent="1-16" drill="0.508"/>
+<via x="66.04" y="8.5344" extent="1-16" drill="0.508"/>
+<via x="66.04" y="6.9088" extent="1-16" drill="0.508"/>
+<via x="66.04" y="5.2832" extent="1-16" drill="0.508"/>
+<via x="66.04" y="3.6576" extent="1-16" drill="0.508"/>
+<via x="66.04" y="2.032" extent="1-16" drill="0.508"/>
+<via x="66.04" y="18.8976" extent="1-16" drill="0.508"/>
+<via x="66.04" y="20.5232" extent="1-16" drill="0.508"/>
+<via x="66.04" y="22.1488" extent="1-16" drill="0.508"/>
+<via x="66.04" y="23.7744" extent="1-16" drill="0.508"/>
+<via x="66.04" y="25.4" extent="1-16" drill="0.508"/>
+<via x="66.04" y="27.0256" extent="1-16" drill="0.508"/>
+<via x="66.04" y="28.6512" extent="1-16" drill="0.508"/>
+<via x="66.04" y="30.2768" extent="1-16" drill="0.508"/>
+<via x="66.04" y="31.9024" extent="1-16" drill="0.508"/>
+<via x="63.6016" y="12.8016" extent="1-16" drill="0.508"/>
+<via x="63.6016" y="11.5824" extent="1-16" drill="0.508"/>
+<via x="58.3184" y="22.352" extent="1-16" drill="0.508"/>
+<via x="56.896" y="22.1488" extent="1-16" drill="0.508"/>
+<via x="59.7408" y="20.9296" extent="1-16" drill="0.508"/>
+<via x="1.6256" y="21.9456" extent="1-16" drill="0.508"/>
+<via x="19.1008" y="22.5552" extent="1-16" drill="0.508"/>
+<via x="34.544" y="8.5344" extent="1-16" drill="0.508"/>
 </signal>
 <signal name="TX+">
 <contactref element="J2" pad="1"/>
@@ -2249,6 +2277,35 @@ BatchPCB compatible</description>
 <wire x1="44.704" y1="28.448" x2="42.0624" y2="25.8064" width="0.2032" layer="16"/>
 </signal>
 </signals>
+<errors>
+<approved hash="19,1,70664284405472b6"/>
+<approved hash="19,1,70c6422440947276"/>
+<approved hash="19,1,d896ea74e827dac5"/>
+<approved hash="19,1,b06562876057b2b5"/>
+<approved hash="19,1,b0c562276097b275"/>
+<approved hash="6,1,48cc815a8cb08e72"/>
+<approved hash="5,1,a8272306e568249a"/>
+<approved hash="5,1,6a08a66412cd2c3c"/>
+<approved hash="5,1,80daee5c10006356"/>
+<approved hash="5,1,d32d45abbbf730a1"/>
+<approved hash="19,1,2cf93c409b637a88"/>
+<approved hash="19,1,0181acd8fc746a61"/>
+<approved hash="19,1,b109fcb51b6800ac"/>
+<approved hash="5,1,214a8a93e37c1de0"/>
+<approved hash="5,1,ee1e91abb175abc2"/>
+<approved hash="5,1,1b11ad9753cbf89d"/>
+<approved hash="5,1,4528c0a4ff680e46"/>
+<approved hash="5,1,d4af1b402cc8b68b"/>
+<approved hash="5,1,3effbefd96a416a6"/>
+<approved hash="5,1,a6f6d535a6371f6b"/>
+<approved hash="5,1,a6c82ef8d19f5f67"/>
+<approved hash="5,1,1d999547afa27b3b"/>
+<approved hash="5,1,3c3e23fb23440329"/>
+<approved hash="5,1,1f6e345f71ac2588"/>
+<approved hash="5,1,ca49aaf84ab635cb"/>
+<approved hash="6,16,7c6eb5b65af361ff"/>
+<approved hash="5,16,8d61398ed38a7911"/>
+</errors>
 </board>
 </drawing>
 </eagle>
