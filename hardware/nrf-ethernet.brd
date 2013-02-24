@@ -103,7 +103,7 @@
 </layers>
 <board>
 <plain>
-<dimension x1="6.2992" y1="0" x2="53.4416" y2="-3.048" x3="-2.4384" y3="-1.524" textsize="1.778" layer="20" dtype="vertical"/>
+<dimension x1="6.2992" y1="0" x2="53.4416" y2="-3.048" x3="-2.4384" y3="-1.524" textsize="1.778" layer="47" dtype="vertical"/>
 <rectangle x1="54.2544" y1="15.0368" x2="55.88" y2="16.6624" layer="29"/>
 <text x="68.2752" y="15.0368" size="1.778" layer="121" rot="SR270">FB2013</text>
 <text x="67.056" y="15.0368" size="1.016" layer="121" rot="SR270">nrf-ethernet</text>
@@ -2277,35 +2277,6 @@ BatchPCB compatible</description>
 <wire x1="44.704" y1="28.448" x2="42.0624" y2="25.8064" width="0.2032" layer="16"/>
 </signal>
 </signals>
-<errors>
-<approved hash="19,1,70664284405472b6"/>
-<approved hash="19,1,70c6422440947276"/>
-<approved hash="19,1,d896ea74e827dac5"/>
-<approved hash="19,1,b06562876057b2b5"/>
-<approved hash="19,1,b0c562276097b275"/>
-<approved hash="6,1,48cc815a8cb08e72"/>
-<approved hash="5,1,a8272306e568249a"/>
-<approved hash="5,1,6a08a66412cd2c3c"/>
-<approved hash="5,1,80daee5c10006356"/>
-<approved hash="5,1,d32d45abbbf730a1"/>
-<approved hash="19,1,2cf93c409b637a88"/>
-<approved hash="19,1,0181acd8fc746a61"/>
-<approved hash="19,1,b109fcb51b6800ac"/>
-<approved hash="5,1,214a8a93e37c1de0"/>
-<approved hash="5,1,ee1e91abb175abc2"/>
-<approved hash="5,1,1b11ad9753cbf89d"/>
-<approved hash="5,1,4528c0a4ff680e46"/>
-<approved hash="5,1,d4af1b402cc8b68b"/>
-<approved hash="5,1,3effbefd96a416a6"/>
-<approved hash="5,1,a6f6d535a6371f6b"/>
-<approved hash="5,1,a6c82ef8d19f5f67"/>
-<approved hash="5,1,1d999547afa27b3b"/>
-<approved hash="5,1,3c3e23fb23440329"/>
-<approved hash="5,1,1f6e345f71ac2588"/>
-<approved hash="5,1,ca49aaf84ab635cb"/>
-<approved hash="6,16,7c6eb5b65af361ff"/>
-<approved hash="5,16,8d61398ed38a7911"/>
-</errors>
 </board>
 </drawing>
 </eagle>
