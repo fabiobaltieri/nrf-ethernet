@@ -22,8 +22,8 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
@@ -1032,7 +1032,7 @@ BatchPCB compatible</description>
 <element name="LED1" library="led" package="CHIPLED_0805" value="" x="62.7888" y="32.9184" rot="R90"/>
 <element name="LED3" library="led" package="CHIPLED_0805" value="" x="47.5488" y="32.9184" rot="R90"/>
 <element name="S3" library="sparkfun" package="TACTILE_SWITCH_SMD" value="SWITCH" x="25.6032" y="30.8864" rot="R180"/>
-<element name="Y1" library="sparkfun" package="CRYSTAL-SMD-5X3" value="8MHz" x="41.2496" y="31.2928"/>
+<element name="Y1" library="sparkfun" package="CRYSTAL-SMD-5X3" value="25MHz" x="41.2496" y="31.2928"/>
 <element name="U5" library="balto" package="SO08" value="MAX3051" x="31.496" y="5.08" rot="MR180"/>
 <element name="R35" library="rcl" package="R0805" value="120" x="24.9936" y="13.8176" rot="MR90"/>
 <element name="R36" library="rcl" package="R0603" value="100k" x="27.432" y="1.8288" rot="MR0"/>
@@ -1064,8 +1064,8 @@ BatchPCB compatible</description>
 <element name="U$6" library="SparkFun-Connectors" package="U.FL" value="U.FL" x="61.6044625" y="23.5712" rot="R315"/>
 <element name="C8" library="rcl" package="C0603" value=".1u" x="41.8592" y="4.064" rot="MR225"/>
 <element name="U4" library="SparkFun-PowerIC" package="SOT23-5" value="MIC5301" x="41.656" y="8.128" rot="MR180"/>
-<element name="C29" library="rcl" package="C0603" value="18p" x="42.672" y="31.2928" rot="MR270"/>
-<element name="C30" library="rcl" package="C0603" value="18p" x="39.8272" y="31.2928" rot="MR90"/>
+<element name="C29" library="rcl" package="C0603" value="33p" x="42.672" y="31.2928" rot="MR270"/>
+<element name="C30" library="rcl" package="C0603" value="33p" x="39.8272" y="31.2928" rot="MR90"/>
 <element name="C6" library="rcl" package="C0603" value=".1u" x="30.8864" y="26.0096" rot="R180"/>
 <element name="C17" library="rcl" package="C0603" value=".1u" x="36.9824" y="31.496" rot="R90"/>
 <element name="C18" library="rcl" package="C0603" value=".1u" x="46.5328" y="28.448"/>

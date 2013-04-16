@@ -11197,7 +11197,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <part name="LED1" library="led" deviceset="LED" device="CHIPLED_0805"/>
 <part name="LED3" library="led" deviceset="LED" device="CHIPLED_0805"/>
 <part name="S3" library="sparkfun" deviceset="SWITCH-MOMENTARY-2" device="SMD" value="SWITCH"/>
-<part name="Y1" library="sparkfun" deviceset="CRYSTAL" device="5X3" value="8MHz"/>
+<part name="Y1" library="sparkfun" deviceset="CRYSTAL" device="5X3" value="25MHz"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
@@ -11261,8 +11261,8 @@ We've spent an enormous amount of time creating and checking these footprints an
 <part name="P+4" library="supply1" deviceset="VCC" device=""/>
 <part name="P+9" library="supply1" deviceset="VCC" device=""/>
 <part name="P+12" library="supply1" deviceset="VCC" device=""/>
-<part name="C29" library="rcl" deviceset="C-EU" device="C0603" value="18p"/>
-<part name="C30" library="rcl" deviceset="C-EU" device="C0603" value="18p"/>
+<part name="C29" library="rcl" deviceset="C-EU" device="C0603" value="33p"/>
+<part name="C30" library="rcl" deviceset="C-EU" device="C0603" value="33p"/>
 <part name="C6" library="rcl" deviceset="C-EU" device="C0603" value=".1u"/>
 <part name="C17" library="rcl" deviceset="C-EU" device="C0603" value=".1u"/>
 <part name="C18" library="rcl" deviceset="C-EU" device="C0603" value=".1u"/>
@@ -11392,8 +11392,6 @@ We've spent an enormous amount of time creating and checking these footprints an
 <text x="96.52" y="132.08" size="1.778" layer="97">GPIO</text>
 <text x="96.52" y="134.62" size="1.778" layer="97">GPIO</text>
 <text x="15.24" y="149.86" size="1.778" layer="97" rot="MR0">GPIO</text>
-<text x="111.76" y="106.68" size="1.778" layer="97">Alternative:
-25MHz</text>
 <text x="15.24" y="147.32" size="1.778" layer="97" rot="MR0">GPIO</text>
 <text x="96.52" y="165.1" size="1.778" layer="97">GPIO</text>
 <text x="96.52" y="129.54" size="1.778" layer="97">GPIO</text>
@@ -13009,10 +13007,4 @@ We've spent an enormous amount of time creating and checking these footprints an
 </errors>
 </schematic>
 </drawing>
-<compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
-</compatibility>
 </eagle>
