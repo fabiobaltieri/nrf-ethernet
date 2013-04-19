@@ -130,6 +130,29 @@ static u8 usbdfu_getstatus(u32 *bwPollTimeout)
 	}
 }
 
+static void leave_bootloader(usbd_device *usbd_dev)
+{
+	int i;
+
+	usbd_disconnect(usbd_dev, true);
+	for (i = 0; i < 8000; i++)   /* Wait a bit. */
+		__asm__("nop");
+
+	gpio_clear(GPIOC, GPIO14);
+	gpio_clear(GPIOC, GPIO15);
+	rcc_peripheral_disable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPCEN);
+	rcc_peripheral_disable_clock(&RCC_APB2ENR, RCC_APB2ENR_AFIOEN);
+	rcc_peripheral_disable_clock(&RCC_AHBENR, RCC_AHBENR_OTGFSEN);
+
+	/* Set vector table base address. */
+	SCB_VTOR = APP_ADDRESS & 0xFFFF;
+	/* Initialise master stack pointer. */
+	asm volatile("msr msp, %0"::"g"
+			(*(volatile u32 *)APP_ADDRESS));
+	/* Jump to application. */
+	(*(void (**)())(APP_ADDRESS + 4))();
+}
+
 static void usbdfu_getstatus_complete(usbd_device *usbd_dev, struct usb_setup_data *req)
 {
 	int i;
@@ -228,29 +251,6 @@ static int usbdfu_control_request(usbd_device *usbd_dev, struct usb_setup_data *
 	}
 
 	return 0;
-}
-
-static void leave_bootloader(usbd_device *usbd_dev)
-{
-	int i;
-
-	usbd_disconnect(usbd_dev, true);
-	for (i = 0; i < 8000; i++)   /* Wait a bit. */
-		__asm__("nop");
-
-	gpio_clear(GPIOC, GPIO14);
-	gpio_clear(GPIOC, GPIO15);
-	rcc_peripheral_disable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPCEN);
-	rcc_peripheral_disable_clock(&RCC_APB2ENR, RCC_APB2ENR_AFIOEN);
-	rcc_peripheral_disable_clock(&RCC_AHBENR, RCC_AHBENR_OTGFSEN);
-
-	/* Set vector table base address. */
-	SCB_VTOR = APP_ADDRESS & 0xFFFF;
-	/* Initialise master stack pointer. */
-	asm volatile("msr msp, %0"::"g"
-			(*(volatile u32 *)APP_ADDRESS));
-	/* Jump to application. */
-	(*(void (**)())(APP_ADDRESS + 4))();
 }
 
 int main(void)
