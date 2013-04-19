@@ -190,8 +190,7 @@ static void usbdfu_getstatus_complete(usbd_device *usbd_dev, struct usb_setup_da
 		usbdfu_state = STATE_DFU_DNLOAD_IDLE;
 		return;
 	case STATE_DFU_MANIFEST:
-		/* USB device must detach, we just reset... */
-		scb_reset_system();
+		leave_bootloader(usbd_dev);
 		return; /* Will never return. */
 	default:
 		return;
