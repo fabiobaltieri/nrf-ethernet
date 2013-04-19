@@ -2,6 +2,7 @@
  * This file is part of the libopencm3 project.
  *
  * Copyright (C) 2010 Thomas Otto <tommi@viadmin.org>
+ * Copyright (C) 2013 Fabio Baltieri <fabio.baltieri@gmail.com>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +22,7 @@
 MEMORY
 {
 	rom (rx) : ORIGIN = 0x08000000, LENGTH = 8K
-	ram (rwx) : ORIGIN = 0x20000000, LENGTH = 4K
+	ram (rwx) : ORIGIN = 0x20000000, LENGTH = 8K
 }
 
 /* Include the common ld script. */
