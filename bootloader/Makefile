@@ -17,6 +17,7 @@ MCU = STM32F1
 LFUSE = 0xef
 HFUSE = 0xdd
 
+# this needs libopencm3 and a cross-compiler with newlib support
 LIBOPENCM3 = ../libopencm3
 LDSCRIPT = usbdfu.ld
 
