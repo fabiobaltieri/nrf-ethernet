@@ -32,7 +32,7 @@
 #define CMD_ERASE	0x41
 
 /* We need a special large control buffer for this device: */
-u8 usbd_control_buffer[1024];
+u8 usbd_control_buffer[2048];
 
 static enum dfu_state usbdfu_state = STATE_DFU_IDLE;
 
@@ -65,7 +65,7 @@ const struct usb_dfu_descriptor dfu_function = {
 	.bDescriptorType = DFU_FUNCTIONAL,
 	.bmAttributes = USB_DFU_CAN_DOWNLOAD | USB_DFU_WILL_DETACH,
 	.wDetachTimeout = 255,
-	.wTransferSize = 1024,
+	.wTransferSize = 2048,
 	.bcdDFUVersion = 0x011A,
 };
 
