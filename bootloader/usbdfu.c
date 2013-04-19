@@ -56,7 +56,7 @@ const struct usb_device_descriptor dev = {
 	.bcdDevice = 0x0200,
 	.iManufacturer = 1,
 	.iProduct = 2,
-	.iSerialNumber = 3,
+	.iSerialNumber = 0,
 	.bNumConfigurations = 1,
 };
 
@@ -106,11 +106,11 @@ const struct usb_config_descriptor config = {
 };
 
 static const char *usb_strings[] = {
-	"Black Sphere Technologies",
-	"DFU Demo",
-	"DEMO",
+	"www.fabiobaltieri.com",
+	"STM32 DFU",
+	"666",
 	/* This string is used by ST Microelectronics' DfuSe utility. */
-	"@Internal Flash   /0x08000000/8*001Ka,56*001Kg",
+	"@Internal Flash   /0x08000000/8*001Ka,120*001Kg",
 };
 
 static u8 usbdfu_getstatus(u32 *bwPollTimeout)
