@@ -229,24 +229,37 @@ static int usbdfu_control_request(usbd_device *usbd_dev, struct usb_setup_data *
 	return 0;
 }
 
+static void leave_bootloader(usbd_device *usbd_dev)
+{
+	int i;
+
+	usbd_disconnect(usbd_dev, true);
+	for (i = 0; i < 8000; i++)   /* Wait a bit. */
+		__asm__("nop");
+
+	gpio_clear(GPIOC, GPIO14);
+	gpio_clear(GPIOC, GPIO15);
+	rcc_peripheral_disable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPCEN);
+	rcc_peripheral_disable_clock(&RCC_APB2ENR, RCC_APB2ENR_AFIOEN);
+	rcc_peripheral_disable_clock(&RCC_AHBENR, RCC_AHBENR_OTGFSEN);
+
+	/* Set vector table base address. */
+	SCB_VTOR = APP_ADDRESS & 0xFFFF;
+	/* Initialise master stack pointer. */
+	asm volatile("msr msp, %0"::"g"
+			(*(volatile u32 *)APP_ADDRESS));
+	/* Jump to application. */
+	(*(void (**)())(APP_ADDRESS + 4))();
+}
+
 int main(void)
 {
+	int i;
+	int timeout;
+
 	usbd_device *usbd_dev;
 
 	rcc_peripheral_enable_clock(&RCC_APB2ENR, RCC_APB2ENR_IOPAEN);
-
-	if (!gpio_get(GPIOA, GPIO10)) {
-		/* Boot the application if it's valid. */
-		if ((*(volatile u32 *)APP_ADDRESS & 0x2FFE0000) == 0x20000000) {
-			/* Set vector table base address. */
-			SCB_VTOR = APP_ADDRESS & 0xFFFF;
-			/* Initialise master stack pointer. */
-			asm volatile("msr msp, %0"::"g"
-				     (*(volatile u32 *)APP_ADDRESS));
-			/* Jump to application. */
-			(*(void (**)())(APP_ADDRESS + 4))();
-		}
-	}
 
 	rcc_clock_setup_in_hse_25mhz_out_72mhz();
 
@@ -276,10 +289,21 @@ int main(void)
 				USB_REQ_TYPE_TYPE | USB_REQ_TYPE_RECIPIENT,
 				usbdfu_control_request);
 
-	gpio_set(GPIOA, GPIO15);
-	gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_2_MHZ,
-		      GPIO_CNF_OUTPUT_PUSHPULL, GPIO15);
-
-	while (1)
+	i = 0;
+	timeout = 0;
+	for (;;) {
 		usbd_poll(usbd_dev);
+		if (i++ >= 80000) {
+			gpio_toggle(GPIOC, GPIO14);
+			gpio_toggle(GPIOC, GPIO15);
+			i = 0;
+			if (usbdfu_state == STATE_DFU_IDLE &&
+			    ((*(volatile u32 *)APP_ADDRESS & 0x2FFE0000) == 0x20000000)) {
+				if (timeout++ > 14)
+					leave_bootloader(usbd_dev);
+			} else {
+				timeout = 0;
+			}
+		}
+	}
 }
