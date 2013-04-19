@@ -21,3 +21,5 @@ BINARY = usbdfu
 
 include ../../Makefile.include
 
+boot:
+	dfu-util -a 0 --dfuse-address 0x08000000:leave -D usbdfu.bin
