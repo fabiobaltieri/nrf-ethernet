@@ -12,6 +12,7 @@
 
 NAME = usbdfu
 
+CPU = cortex-m3
 MCU = STM32F1
 
 LFUSE = 0xef
@@ -31,7 +32,7 @@ BOOTLOADER = dfu-util
 BOOTLOADER_FLAGS = -a 0 --dfuse-address 0x08000000:leave
 
 CFLAGS  = -Os -g -Wall -Wextra -Wimplicit-function-declaration -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wshadow
-CFLAGS += -I$(LIBOPENCM3)/include -fno-common -mthumb -mcpu=cortex-m3 -msoft-float -MD -D$(MCU)
+CFLAGS += -I$(LIBOPENCM3)/include -fno-common -mthumb -mcpu=$(CPU) -msoft-float -MD -D$(MCU)
 ASFLAGS =
 LDFLAGS  = -lopencm3_stm32f1 --static -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group -L$(LIBOPENCM3)/lib -T$(LDSCRIPT) -nostartfiles
 LDFLAGS += -Wl,--gc-sections -mthumb -mcpu=cortex-m3 -msoft-float -mfix-cortex-m3-ldrd
