@@ -19,7 +19,7 @@ LFUSE = 0xef
 HFUSE = 0xdd
 
 # this needs libopencm3 and a cross-compiler with newlib support
-LIBOPENCM3 = ../libopencm3
+LIBOPENCM3 = $(HOME)/Src/libopencm3
 LDSCRIPT = usbdfu.ld
 
 CROSS_COMPILE = arm-none-eabi-
