@@ -3,6 +3,7 @@
 #include <test.h>
 
 #include "board.h"
+#include "console.h"
 
 /* GPIO initialization values */
 const PALConfig pal_default_config = {
@@ -62,6 +63,9 @@ int main(void)
 	halInit();
 	chSysInit();
 
+	/* local init */
+	console_init();
+
 	hello();
 
 	sdStart(&SD1, NULL);
@@ -69,6 +73,7 @@ int main(void)
 	chThdCreateStatic(wa_blinker, sizeof(wa_blinker), NORMALPRIO, blinker, NULL);
 
 	for (;;) {
+		console_poll();
 		chThdSleepMilliseconds(500);
 	}
 }

@@ -23,7 +23,9 @@ CSRC = $(PORTSRC) \
        $(TESTSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
-       main.c
+       $(CHIBIOS)/os/various/shell.c \
+       $(CHIBIOS)/os/various/chprintf.c \
+       main.c console.c
 
 ASMSRC = $(PORTASM)
 
