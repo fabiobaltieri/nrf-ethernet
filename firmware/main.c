@@ -46,12 +46,9 @@ static void hello(void)
 {
 	int i;
 
-	for (i = 0; i < 4; i++) {
-		palSetPad(GPIOC, GPIOC_LED_STATUS1);
-		palSetPad(GPIOC, GPIOC_LED_STATUS2);
-		chThdSleepMilliseconds(50);
-		palClearPad(GPIOC, GPIOC_LED_STATUS1);
-		palClearPad(GPIOC, GPIOC_LED_STATUS2);
+	for (i = 0; i < 8; i++) {
+		palTogglePad(GPIOC, GPIOC_LED_STATUS1);
+		palTogglePad(GPIOC, GPIOC_LED_STATUS2);
 		chThdSleepMilliseconds(50);
 	}
 
