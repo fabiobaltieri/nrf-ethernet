@@ -38,7 +38,7 @@
 #define SDC_MMC_SUPPORT             FALSE
 #define SDC_NICE_WAITING            TRUE
 
-#define SERIAL_DEFAULT_BITRATE      38400
+#define SERIAL_DEFAULT_BITRATE      115200
 #define SERIAL_BUFFERS_SIZE         16
 
 #define SPI_USE_WAIT                TRUE
