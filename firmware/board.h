@@ -28,17 +28,23 @@
  *   F - Alternate Open Drain output 50MHz.
  */
 
-#define VAL_GPIOACRL 0x48818B48
-#define VAL_GPIOACRH 0x84444441
-#define VAL_GPIOAODR 0xFFFFFFFF
+/*                     Eeee.EE. */
+#define VAL_GPIOACRL 0x44828B48
+/*                     r..UUUUc */
+#define VAL_GPIOACRH 0x84444442
+#define VAL_GPIOAODR 0xFFFFFFEF
 
-#define VAL_GPIOBCRL 0x4A111488
-#define VAL_GPIOBCRH 0x88BBB814
-#define VAL_GPIOBODR 0xFFFFFFFF
+/*                     UUlrrX.. */
+#define VAL_GPIOBCRL 0x4A211488
+/*                     ..EEE.CC */
+#define VAL_GPIOBCRH 0x88BBB894
+#define VAL_GPIOBODR 0xFFFFFFCF
 
+/*                     ..EE..E. */
 #define VAL_GPIOCCRL 0x884488B8
-#define VAL_GPIOCCRH 0x224B8B88
-#define VAL_GPIOCODR 0xFFFFFFFF
+/*                     ll.RRR.. */
+#define VAL_GPIOCCRH 0x228B8B88
+#define VAL_GPIOCODR 0xFFFF3FFF
 
 #define VAL_GPIODCRL 0x88888888
 #define VAL_GPIODCRH 0x88888888
@@ -55,6 +61,16 @@
 
 #define LED_RF_GPIO GPIOB
 #define LED_RF 5
+
+#define CAN_SHDN_GPIO GPIOA
+#define CAN_SHDN 8
+
+#define ETH_RST_GPIO GPIOA
+#define ETH_RST 4
+
+#define RF_GPIO GPIOB
+#define RF_CSN 3
+#define RF_CE 4
 
 void boardInit(void);
 
