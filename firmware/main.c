@@ -34,9 +34,9 @@ static msg_t blinker(void *data)
 	chRegSetThreadName("blinker");
 
 	for (;;) {
-		palTogglePad(LED_STATUS_GPIO, LED_STATUS_RED);
-		palTogglePad(LED_STATUS_GPIO, LED_STATUS_GREEN);
-		palTogglePad(LED_RF_GPIO, LED_RF);
+		led_red_toggle();
+		led_green_toggle();
+		led_rf_toggle();
 		chThdSleepMilliseconds(500);
 	}
 
@@ -48,8 +48,8 @@ static void hello(void)
 	int i;
 
 	for (i = 0; i < 8; i++) {
-		palTogglePad(LED_STATUS_GPIO, LED_STATUS_RED);
-		palTogglePad(LED_STATUS_GPIO, LED_STATUS_GREEN);
+		led_red_toggle();
+		led_green_toggle();
 		chThdSleepMilliseconds(50);
 	}
 

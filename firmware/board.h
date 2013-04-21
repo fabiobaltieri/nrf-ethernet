@@ -59,18 +59,40 @@
 #define LED_STATUS_RED 15
 #define LED_STATUS_GREEN 14
 
+#define led_red_on() palSetPad(LED_STATUS_GPIO, LED_STATUS_RED)
+#define led_red_off() palClearPad(LED_STATUS_GPIO, LED_STATUS_RED)
+#define led_red_toggle() palTogglePad(LED_STATUS_GPIO, LED_STATUS_RED)
+#define led_green_on() palSetPad(LED_STATUS_GPIO, LED_STATUS_GREEN)
+#define led_green_off() palClearPad(LED_STATUS_GPIO, LED_STATUS_GREEN)
+#define led_green_toggle() palTogglePad(LED_STATUS_GPIO, LED_STATUS_GREEN)
+
 #define LED_RF_GPIO GPIOB
 #define LED_RF 5
+
+#define led_rf_on() palSetPad(LED_RF_GPIO, LED_RF)
+#define led_rf_off() palClearPad(LED_RF_GPIO, LED_RF)
+#define led_rf_toggle() palTogglePad(LED_RF_GPIO, LED_RF)
 
 #define CAN_SHDN_GPIO GPIOA
 #define CAN_SHDN 8
 
+#define can_xcvr_enable() palClearPad(CAN_SHDN_GPIO, CAN_SHDN)
+#define can_xcvr_disable() palSetPad(CAN_SHDN_GPIO, CAN_SHDN)
+
 #define ETH_RST_GPIO GPIOA
 #define ETH_RST 4
+
+#define eth_reset_l() palClearPad(ETH_RST_GPIO, ETH_RST)
+#define eth_reset_h() palSetPad(ETH_RST_GPIO, ETH_RST)
 
 #define RF_GPIO GPIOB
 #define RF_CSN 3
 #define RF_CE 4
+
+#define nrf_cs_l() palClearPad(RF_GPIO, RF_CSN)
+#define nrf_cs_h() palSetPad(RF_GPIO, RF_CSN)
+#define nrf_ce_l() palClearPad(RF_GPIO, RF_CE)
+#define nrf_ce_h() palSetPad(RF_GPIO, RF_CE)
 
 void boardInit(void);
 
