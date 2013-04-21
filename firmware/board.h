@@ -49,8 +49,12 @@
 #define VAL_GPIOEODR 0xFFFFFFFF
 
 /* I/O */
-#define GPIOC_LED_STATUS1       14
-#define GPIOC_LED_STATUS2       15
+#define LED_STATUS_GPIO GPIOC
+#define LED_STATUS_RED 15
+#define LED_STATUS_GREEN 14
+
+#define LED_RF_GPIO GPIOB
+#define LED_RF 5
 
 void boardInit(void);
 

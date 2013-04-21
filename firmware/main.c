@@ -32,11 +32,9 @@ static msg_t blinker(void *data)
 	chRegSetThreadName("blinker");
 
 	for (;;) {
-		palClearPad(GPIOC, GPIOC_LED_STATUS1);
-		palSetPad(GPIOC, GPIOC_LED_STATUS2);
-		chThdSleepMilliseconds(500);
-		palSetPad(GPIOC, GPIOC_LED_STATUS1);
-		palClearPad(GPIOC, GPIOC_LED_STATUS2);
+		palTogglePad(LED_STATUS_GPIO, LED_STATUS_RED);
+		palTogglePad(LED_STATUS_GPIO, LED_STATUS_GREEN);
+		palTogglePad(LED_RF_GPIO, LED_RF);
 		chThdSleepMilliseconds(500);
 	}
 
@@ -48,8 +46,8 @@ static void hello(void)
 	int i;
 
 	for (i = 0; i < 8; i++) {
-		palTogglePad(GPIOC, GPIOC_LED_STATUS1);
-		palTogglePad(GPIOC, GPIOC_LED_STATUS2);
+		palTogglePad(LED_STATUS_GPIO, LED_STATUS_RED);
+		palTogglePad(LED_STATUS_GPIO, LED_STATUS_GREEN);
 		chThdSleepMilliseconds(50);
 	}
 
@@ -68,7 +66,9 @@ int main(void)
 
 	sdStart(&SD1, NULL);
 
-	chThdCreateStatic(blinker_wa, sizeof(blinker_wa), NORMALPRIO, blinker, NULL);
+	chThdCreateStatic(blinker_wa, sizeof(blinker_wa),
+			NORMALPRIO,
+			blinker, NULL);
 
 	for (;;) {
 		console_poll();
