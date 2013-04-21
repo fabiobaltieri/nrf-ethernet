@@ -49,4 +49,5 @@ CPPWARN = -Wall
 include $(CHIBIOS)/os/ports/GCC/ARMCMx/rules.mk
 
 boot: build/$(PROJECT).bin
-	dfu-util -a 0 -s $(LOAD_ADDRESS):leave -D build/$(PROJECT).bin
+	pm -d usb1; pm -w 100 -e usb1; sleep 2
+	dfu-util -d 0483:df11 -a 0 -s $(LOAD_ADDRESS):leave -D build/$(PROJECT).bin
