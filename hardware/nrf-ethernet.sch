@@ -11355,10 +11355,10 @@ We've spent an enormous amount of time creating and checking these footprints an
 <wire x1="142.24" y1="261.62" x2="73.66" y2="261.62" width="0.1524" layer="97"/>
 <wire x1="142.24" y1="215.9" x2="73.66" y2="215.9" width="0.1524" layer="97"/>
 <text x="76.2" y="254" size="5.08" layer="97">LDO</text>
-<wire x1="231.14" y1="66.04" x2="177.8" y2="66.04" width="0.1524" layer="97"/>
+<wire x1="231.14" y1="63.5" x2="177.8" y2="63.5" width="0.1524" layer="97"/>
 <wire x1="231.14" y1="119.38" x2="177.8" y2="119.38" width="0.1524" layer="97"/>
-<wire x1="231.14" y1="119.38" x2="231.14" y2="66.04" width="0.1524" layer="97"/>
-<wire x1="177.8" y1="119.38" x2="177.8" y2="66.04" width="0.1524" layer="97"/>
+<wire x1="231.14" y1="119.38" x2="231.14" y2="63.5" width="0.1524" layer="97"/>
+<wire x1="177.8" y1="119.38" x2="177.8" y2="63.5" width="0.1524" layer="97"/>
 <text x="182.88" y="111.76" size="5.08" layer="95">LEDs</text>
 <wire x1="149.86" y1="58.42" x2="7.62" y2="58.42" width="0.1524" layer="97"/>
 <wire x1="7.62" y1="58.42" x2="7.62" y2="203.2" width="0.1524" layer="97"/>
@@ -11395,6 +11395,9 @@ We've spent an enormous amount of time creating and checking these footprints an
 <text x="15.24" y="147.32" size="1.778" layer="97" rot="MR0">GPIO</text>
 <text x="96.52" y="165.1" size="1.778" layer="97">GPIO</text>
 <text x="96.52" y="129.54" size="1.778" layer="97">GPIO</text>
+<text x="208.28" y="66.04" size="1.778" layer="97">Red</text>
+<text x="218.44" y="66.04" size="1.778" layer="97">Green</text>
+<text x="187.96" y="66.04" size="1.778" layer="97">Green</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
