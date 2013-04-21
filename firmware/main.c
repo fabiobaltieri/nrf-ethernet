@@ -25,7 +25,7 @@ void boardInit(void)
 	AFIO->MAPR |= AFIO_MAPR_USART1_REMAP;
 }
 
-static WORKING_AREA(wa_blinker, 128);
+static WORKING_AREA(blinker_wa, 128);
 static msg_t blinker(void *data)
 {
 	chRegSetThreadName("blinker");
@@ -67,7 +67,7 @@ int main(void)
 
 	sdStart(&SD1, NULL);
 
-	chThdCreateStatic(wa_blinker, sizeof(wa_blinker), NORMALPRIO, blinker, NULL);
+	chThdCreateStatic(blinker_wa, sizeof(blinker_wa), NORMALPRIO, blinker, NULL);
 
 	for (;;) {
 		console_poll();
