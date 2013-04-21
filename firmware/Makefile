@@ -16,6 +16,7 @@ include $(CHIBIOS)/os/hal/platforms/STM32F1xx/platform_f105_f107.mk
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/ports/GCC/ARMCMx/STM32F1xx/port.mk
 include $(CHIBIOS)/os/kernel/kernel.mk
+include $(CHIBIOS)/os/various/lwip_bindings/lwip.mk
 include $(CHIBIOS)/test/test.mk
 
 CSRC = $(PORTSRC) \
@@ -23,6 +24,8 @@ CSRC = $(PORTSRC) \
        $(TESTSRC) \
        $(HALSRC) \
        $(PLATFORMSRC) \
+       $(LWSRC) \
+       $(CHIBIOS)/os/various/evtimer.c \
        $(CHIBIOS)/os/various/shell.c \
        $(CHIBIOS)/os/various/chprintf.c \
        main.c console.c
@@ -30,7 +33,7 @@ CSRC = $(PORTSRC) \
 ASMSRC = $(PORTASM)
 
 INCDIR = $(PORTINC) $(KERNINC) $(TESTINC) \
-         $(HALINC) $(PLATFORMINC) \
+         $(HALINC) $(PLATFORMINC) $(LWINC) \
          $(CHIBIOS)/os/various
 
 CC   = $(TRGT)gcc

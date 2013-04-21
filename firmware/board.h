@@ -5,6 +5,9 @@
 #define STM32F10X_CL /* Connectivity Line */
 
 /* Ethernet configuration */
+/* TODO: PHY configuration */
+#define BOARD_PHY_RESET()
+#define BOARD_PHY_ADDRESS 0
 #define BOARD_PHY_ID            MII_STE101P_ID
 #define BOARD_PHY_RMII
 
