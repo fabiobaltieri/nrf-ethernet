@@ -22,7 +22,8 @@ void __early_init(void)
 void boardInit(void)
 {
 	/* alternate function init */
-	AFIO->MAPR |= AFIO_MAPR_USART1_REMAP;
+	AFIO->MAPR |= AFIO_MAPR_USART1_REMAP |
+		AFIO_MAPR_CAN_REMAP_REMAP2;
 }
 
 static WORKING_AREA(blinker_wa, 128);
