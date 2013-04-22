@@ -28,7 +28,7 @@ CSRC = $(PORTSRC) \
        $(CHIBIOS)/os/various/evtimer.c \
        $(CHIBIOS)/os/various/shell.c \
        $(CHIBIOS)/os/various/chprintf.c \
-       main.c console.c
+       main.c usb_device.c console.c
 
 ASMSRC = $(PORTASM)
 
@@ -52,5 +52,5 @@ CPPWARN = -Wall
 include $(CHIBIOS)/os/ports/GCC/ARMCMx/rules.mk
 
 boot: build/$(PROJECT).bin
-	pm -d usb1; pm -w 100 -e usb1; sleep 2
+	(usbtool -P nrf-ethernet control out vendor device 0 0 0; sleep 1) || true
 	dfu-util -d 0483:df11 -a 0 -s $(LOAD_ADDRESS):leave -D build/$(PROJECT).bin

@@ -3,6 +3,7 @@
 #include <test.h>
 
 #include "board.h"
+#include "usb_device.h"
 #include "console.h"
 
 /* GPIO initialization values */
@@ -62,7 +63,12 @@ int main(void)
 	chSysInit();
 
 	/* local init */
+	usb_init();
+#if 0
 	console_init((BaseSequentialStream *)&SD1);
+#else
+	console_init((BaseSequentialStream *)usb_get_serial_driver());
+#endif
 
 	hello();
 

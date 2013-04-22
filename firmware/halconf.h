@@ -17,10 +17,10 @@
 #define HAL_USE_RTC                 FALSE
 #define HAL_USE_SDC                 FALSE
 #define HAL_USE_SERIAL              TRUE
-#define HAL_USE_SERIAL_USB          FALSE
+#define HAL_USE_SERIAL_USB          TRUE
 #define HAL_USE_SPI                 FALSE
 #define HAL_USE_UART                FALSE
-#define HAL_USE_USB                 FALSE
+#define HAL_USE_USB                 TRUE
 
 #define ADC_USE_WAIT                TRUE
 #define ADC_USE_MUTUAL_EXCLUSION    TRUE
