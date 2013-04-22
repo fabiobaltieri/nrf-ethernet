@@ -1,2 +1,2 @@
-void console_init(void);
+void console_init(BaseSequentialStream *stream);
 void console_poll(void);

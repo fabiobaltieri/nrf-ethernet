@@ -54,20 +54,21 @@ static const ShellCommand commands[] = {
 	{}
 };
 
-static const ShellConfig shell_cfg1 = {
-	(BaseSequentialStream *)&SD1,
+static ShellConfig shell_cfg = {
+	NULL, /* set by console_init */
 	commands
 };
 
-void console_init(void)
+void console_init(BaseSequentialStream *stream)
 {
+	shell_cfg.sc_channel = stream;
 	shellInit();
 }
 
 void console_poll(void)
 {
 	if (!console_th)
-		console_th = shellCreate(&shell_cfg1, SHELL_WA_SIZE, NORMALPRIO);
+		console_th = shellCreate(&shell_cfg, SHELL_WA_SIZE, NORMALPRIO);
 	else if (chThdTerminated(console_th)) {
 		chThdRelease(console_th);
 		console_th = NULL;

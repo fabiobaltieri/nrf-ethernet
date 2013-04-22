@@ -62,7 +62,7 @@ int main(void)
 	chSysInit();
 
 	/* local init */
-	console_init();
+	console_init((BaseSequentialStream *)&SD1);
 
 	hello();
 
