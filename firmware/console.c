@@ -23,13 +23,13 @@ static void cmd_mem(BaseSequentialStream *chp, int argc, char *argv[])
 	chprintf(chp, "heap free total  : %u bytes\r\n", size);
 }
 
-static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[])
+static void cmd_ps(BaseSequentialStream *chp, int argc, char *argv[])
 {
 	static const char *states[] = {THD_STATE_NAMES};
 	Thread *th;
 
 	if (argc > 0) {
-		chprintf(chp, "Usage: threads\r\n");
+		chprintf(chp, "Usage: ps\r\n");
 		return;
 	}
 
@@ -50,7 +50,7 @@ static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[])
 
 static const ShellCommand commands[] = {
 	{"mem", cmd_mem},
-	{"threads", cmd_threads},
+	{"ps", cmd_ps},
 	{}
 };
 
