@@ -299,7 +299,7 @@ int main(void)
 			i = 0;
 			if (usbdfu_state == STATE_DFU_IDLE &&
 			    ((*(volatile u32 *)APP_ADDRESS & 0x2FFE0000) == 0x20000000)) {
-				if (timeout++ > 14)
+				if (timeout++ > 13)
 					leave_bootloader(usbd_dev);
 			} else {
 				timeout = 0;
