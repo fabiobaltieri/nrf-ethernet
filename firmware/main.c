@@ -54,7 +54,6 @@ static void hello(void)
 		led_green_toggle();
 		chThdSleepMilliseconds(50);
 	}
-
 }
 
 int main(void)
