@@ -5,6 +5,7 @@
 #include "board.h"
 #include "usb_device.h"
 #include "console.h"
+#include "blink.h"
 
 /* GPIO initialization values */
 const PALConfig pal_default_config = {
@@ -63,6 +64,7 @@ int main(void)
 	chSysInit();
 
 	/* local init */
+	blink_init();
 	usb_init();
 #if 0
 	console_init((BaseSequentialStream *)&SD1);
