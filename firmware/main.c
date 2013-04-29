@@ -1,6 +1,7 @@
 #include <ch.h>
 #include <hal.h>
 #include <test.h>
+#include <lwipthread.h>
 
 #include "board.h"
 #include "usb_device.h"
@@ -101,6 +102,7 @@ int main(void)
 	chSysInit();
 
 	/* local init */
+	eth_reset_h();
 	blink_init();
 	usb_init();
 #if 0
@@ -119,6 +121,10 @@ int main(void)
 	chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
 			NORMALPRIO,
 			heartbeat, NULL);
+
+	chThdCreateStatic(wa_lwip_thread, LWIP_THREAD_STACK_SIZE,
+			NORMALPRIO + 1,
+			lwip_thread, NULL);
 
 	for (;;) {
 		console_poll();
