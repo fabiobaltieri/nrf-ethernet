@@ -6,6 +6,7 @@
 #include "usb_device.h"
 #include "console.h"
 #include "blink.h"
+#include "nrf24l01p.h"
 
 /* GPIO initialization values */
 const PALConfig pal_default_config = {
@@ -52,7 +53,7 @@ static void eth_ext_irq(EXTDriver *extp, expchannel_t channel)
 
 static void nrf_ext_irq(EXTDriver *extp, expchannel_t channel)
 {
-	blink(BLINK_RED, false);
+	nrf_kick_loop();
 }
 
 static const EXTConfig extcfg = {{
@@ -107,6 +108,7 @@ int main(void)
 #else
 	console_init((BaseSequentialStream *)usb_get_serial_driver());
 #endif
+	nrf_init();
 	extStart(&EXTD1, &extcfg);
 
 	hello();
