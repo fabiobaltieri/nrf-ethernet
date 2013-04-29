@@ -878,8 +878,8 @@
  * LWIP_NETIF_HOSTNAME==1: use DHCP_OPTION_HOSTNAME with netif's hostname
  * field.
  */
-#define LWIP_NETIF_HOSTNAME             0
-
+#define LWIP_NETIF_HOSTNAME             1
+#define NETIF_HOSTNAME			"nrf-ethernet"
 /**
  * LWIP_NETIF_API==1: Support netif api (in netifapi.c)
  */
