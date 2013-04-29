@@ -30,16 +30,16 @@ void boardInit(void)
 		AFIO_MAPR_CAN_REMAP_REMAP2;
 }
 
-static WORKING_AREA(blinker_wa, 128);
-static msg_t blinker(void *data)
+static WORKING_AREA(heartbeat_wa, 16);
+static msg_t heartbeat(void *data)
 {
-	chRegSetThreadName("blinker");
+	chRegSetThreadName("heartbeat");
 
 	for (;;) {
-		led_red_toggle();
-		led_green_toggle();
-		led_rf_toggle();
-		chThdSleepMilliseconds(500);
+		blink(BLINK_GREEN, true);
+		chThdSleepMilliseconds(200);
+		blink(BLINK_GREEN, true);
+		chThdSleepMilliseconds(1500);
 	}
 
 	return 0;
@@ -72,12 +72,13 @@ int main(void)
 #endif
 
 	hello();
+	led_green_on();
 
 	sdStart(&SD1, NULL);
 
-	chThdCreateStatic(blinker_wa, sizeof(blinker_wa),
+	chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
 			NORMALPRIO,
-			blinker, NULL);
+			heartbeat, NULL);
 
 	for (;;) {
 		console_poll();
