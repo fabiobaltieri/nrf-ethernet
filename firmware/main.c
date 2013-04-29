@@ -45,6 +45,43 @@ static msg_t heartbeat(void *data)
 	return 0;
 }
 
+static void eth_ext_irq(EXTDriver *extp, expchannel_t channel)
+{
+	/* empty */
+}
+
+static void nrf_ext_irq(EXTDriver *extp, expchannel_t channel)
+{
+	blink(BLINK_RED, false);
+}
+
+static const EXTConfig extcfg = {{
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_FALLING_EDGE | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA, eth_ext_irq },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_FALLING_EDGE | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA, nrf_ext_irq },
+
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+}};
+
 static void hello(void)
 {
 	int i;
@@ -70,6 +107,7 @@ int main(void)
 #else
 	console_init((BaseSequentialStream *)usb_get_serial_driver());
 #endif
+	extStart(&EXTD1, &extcfg);
 
 	hello();
 	led_green_on();

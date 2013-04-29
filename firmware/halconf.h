@@ -7,7 +7,7 @@
 #define HAL_USE_PAL                 TRUE
 #define HAL_USE_ADC                 FALSE
 #define HAL_USE_CAN                 FALSE
-#define HAL_USE_EXT                 FALSE
+#define HAL_USE_EXT                 TRUE
 #define HAL_USE_GPT                 FALSE
 #define HAL_USE_I2C                 FALSE
 #define HAL_USE_ICU                 FALSE
