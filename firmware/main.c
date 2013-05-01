@@ -119,7 +119,7 @@ int main(void)
 	sdStart(&SD1, NULL);
 
 	chThdCreateStatic(heartbeat_wa, sizeof(heartbeat_wa),
-			NORMALPRIO,
+			LOWPRIO,
 			heartbeat, NULL);
 
 	chThdCreateStatic(wa_lwip_thread, LWIP_THREAD_STACK_SIZE,

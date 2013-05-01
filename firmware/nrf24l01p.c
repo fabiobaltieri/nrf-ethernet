@@ -326,6 +326,6 @@ void nrf_init(void)
 	spiStart(&SPI, &spicfg);
 
 	nrf.th = chThdCreateStatic(nrf.wa, sizeof(nrf.wa),
-			NORMALPRIO,
+			NORMALPRIO + 1,
 			nrf_radio, &nrf);
 }
