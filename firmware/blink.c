@@ -13,7 +13,7 @@ enum {
 struct blink_entry {
 	enum led_id id;
 	char *name;
-	Thread *th;
+	struct Thread *th;
 	WORKING_AREA(wa, 16);
 };
 

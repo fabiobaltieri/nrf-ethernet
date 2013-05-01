@@ -20,7 +20,7 @@
 #define MBSZ 10
 
 static struct nrf_entry {
-	Thread *th;
+	struct Thread *th;
 	WORKING_AREA(wa, 128);
 
 	Mailbox rx;

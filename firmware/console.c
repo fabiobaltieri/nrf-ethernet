@@ -7,7 +7,7 @@
 
 #define SHELL_WA_SIZE   THD_WA_SIZE(2048)
 
-static Thread *console_th = NULL;
+static struct Thread *console_th = NULL;
 
 static void cmd_mem(BaseSequentialStream *chp, int argc, char *argv[])
 {
