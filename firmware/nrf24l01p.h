@@ -114,3 +114,4 @@ struct nrf_raw_msg {
 void nrf_init(void);
 void nrf_kick_loop(void);
 void nrf_recv(struct nrf_raw_msg *msg);
+void nrf_send(struct nrf_raw_msg *msg);

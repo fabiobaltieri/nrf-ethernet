@@ -223,6 +223,20 @@ void nrf_recv(struct nrf_raw_msg *msg)
 	chSysUnlock();
 }
 
+void nrf_send(struct nrf_raw_msg *msg)
+{
+	struct nrf_raw_msg *out_msg;
+
+	chSysLock();
+	out_msg = &nrf.tx_bufs[nrf.tx_idx];
+	chMBPostS(&nrf.tx, (msg_t)out_msg, TIME_INFINITE);
+	memcpy(out_msg, msg, sizeof(*msg));
+	nrf.tx_idx = (nrf.tx_idx + 1) % MBSZ;
+	chSysUnlock();
+
+	nrf_kick_loop();
+}
+
 static void nrf_irq(void)
 {
 	msg_t dummy;
@@ -244,23 +258,36 @@ static void nrf_irq(void)
 		nrf.rx_idx = (nrf.rx_idx + 1) % MBSZ;
 	}
 
-#if 0 // TODO: tx processing
 	/* TX data sent */
 	if (status & TX_DS) {
-		if (message to send in queue) {
-			nrf_write_payload(msg, PAYLOADSZ);
-		} else {
+		chSysLock();
+		/* go back to rx mode if it was the last packet */
+		if (chMBGetUsedCountI(&nrf.tx) == 0) {
 			nrf_standby();
 			nrf_rx_mode();
 		}
+		chSysUnlock();
 	}
-#endif
 
 	/* TX max retry */
 	if (status & MAX_RT) {
 	}
 
 	nrf_write_reg(STATUS, status);
+}
+
+static void nrf_check_tx(void)
+{
+	struct nrf_raw_msg *msg;
+
+	chSysLock();
+	if (chMBGetUsedCountI(&nrf.tx)) {
+		nrf_standby();
+
+		chMBFetchS(&nrf.tx, (msg_t *)&msg, TIME_IMMEDIATE);
+		nrf_tx((uint8_t *)msg, PAYLOADSZ);
+	}
+	chSysUnlock();
 }
 
 static msg_t nrf_radio(void *data)
@@ -298,6 +325,7 @@ static msg_t nrf_radio(void *data)
 		chEvtWaitAny(ALL_EVENTS);
 		blink(BLINK_RF, false);
 		nrf_irq();
+		nrf_check_tx();
 	}
 
 	return 0;
@@ -322,6 +350,8 @@ void nrf_init(void)
 {
 	nrf.rx_idx = 0;
 	chMBInit(&nrf.rx, (msg_t *)nrf.rx_msgs, MBSZ);
+	nrf.tx_idx = 0;
+	chMBInit(&nrf.tx, (msg_t *)nrf.tx_msgs, MBSZ);
 
 	spiStart(&SPI, &spicfg);
 
