@@ -246,6 +246,8 @@ static void nrf_irq(void)
 
 	/* RX data ready */
 	if (status & RX_DR) {
+		blink(BLINK_RF, false);
+
 		chSysLock();
 		/* if full, drop oldest */
 		if (chMBGetFreeCountI(&nrf.rx) == 0)
@@ -260,6 +262,8 @@ static void nrf_irq(void)
 
 	/* TX data sent */
 	if (status & TX_DS) {
+		blink(BLINK_RF, false);
+
 		chSysLock();
 		/* go back to rx mode if it was the last packet */
 		if (chMBGetUsedCountI(&nrf.tx) == 0) {
@@ -323,7 +327,6 @@ static msg_t nrf_radio(void *data)
 
 	for (;;) {
 		chEvtWaitAny(ALL_EVENTS);
-		blink(BLINK_RF, false);
 		nrf_irq();
 		nrf_check_tx();
 	}
