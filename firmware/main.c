@@ -8,6 +8,7 @@
 #include "console.h"
 #include "blink.h"
 #include "nrf24l01p.h"
+#include "data.h"
 
 /* GPIO initialization values */
 const PALConfig pal_default_config = {
@@ -112,6 +113,7 @@ int main(void)
 #endif
 	nrf_init();
 	extStart(&EXTD1, &extcfg);
+	data_init();
 
 	hello();
 	led_green_on();

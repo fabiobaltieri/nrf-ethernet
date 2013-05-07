@@ -2,8 +2,10 @@
 #include <hal.h>
 #include <chprintf.h>
 #include <shell.h>
+#include <string.h>
 
 #include "console.h"
+#include "data.h"
 
 #define SHELL_WA_SIZE   THD_WA_SIZE(2048)
 
@@ -48,9 +50,15 @@ static void cmd_ps(BaseSequentialStream *chp, int argc, char *argv[])
 	} while (th != NULL);
 }
 
+static void cmd_data_dump(BaseSequentialStream *chp, int argc, char *argv[])
+{
+	data_dump(chp);
+}
+
 static const ShellCommand commands[] = {
 	{"mem", cmd_mem},
 	{"ps", cmd_ps},
+	{"dd", cmd_data_dump},
 	{}
 };
 
