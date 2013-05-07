@@ -26,12 +26,15 @@ struct data_entry {
 	uint8_t data[DATA_SIZE];
 };
 
+static struct Mutex data_mutex;
 static struct data_entry data_table[TABLE_SIZE];
 
 void data_dump(BaseSequentialStream *chp)
 {
 	struct data_entry *entry;
 	int i, j;
+
+	chMtxLock(&data_mutex);
 
 	for (i = 0; i < TABLE_SIZE; i++) {
 		entry = &data_table[i];
@@ -45,6 +48,8 @@ void data_dump(BaseSequentialStream *chp)
 		}
 		chprintf(chp, "\r\n");
 	}
+
+	chMtxUnlock();
 }
 
 static void update_entry(struct data_entry *entry, struct nrf_frame *msg)
@@ -61,6 +66,8 @@ static void update_table(struct nrf_frame *msg)
 	int first_free = -1;
 	int match = -1;
 	int i;
+
+	chMtxLock(&data_mutex);
 
 	for (i = 0; i < TABLE_SIZE; i++) {
 		entry = &data_table[i];
@@ -82,6 +89,8 @@ static void update_table(struct nrf_frame *msg)
 		update_entry(&data_table[first_free], msg);
 	else
 		return;
+
+	chMtxUnlock();
 }
 
 static msg_t data_rx(void *data)
@@ -108,6 +117,8 @@ static msg_t data_clean(void *data)
 	for (;;) {
 		chThdSleepMilliseconds(TTL_DELAY);
 
+		chMtxLock(&data_mutex);
+
 		for (i = 0; i < TABLE_SIZE; i++) {
 			entry = &data_table[i];
 
@@ -118,6 +129,8 @@ static msg_t data_clean(void *data)
 			if (entry->ttl == 0)
 				memset(entry, 0, sizeof(*entry));
 		}
+
+		chMtxUnlock();
 	}
 
 	return 0;
@@ -129,6 +142,8 @@ void data_init(void)
 
 	for (i = 0; i < TABLE_SIZE; i++)
 		memset(&data_table[i], 0, sizeof(*data_table));
+
+	chMtxInit(&data_mutex);
 
 	data_rx_th = chThdCreateStatic(data_rx_wa, sizeof(data_rx_wa),
 			NORMALPRIO,
