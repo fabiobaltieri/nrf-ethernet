@@ -10,6 +10,8 @@
 #include "nrf24l01p.h"
 #include "data.h"
 
+#include "net/httpd.h"
+
 /* GPIO initialization values */
 const PALConfig pal_default_config = {
 	{ VAL_GPIOAODR, VAL_GPIOACRL, VAL_GPIOACRH },
@@ -127,6 +129,8 @@ int main(void)
 	chThdCreateStatic(wa_lwip_thread, LWIP_THREAD_STACK_SIZE,
 			NORMALPRIO + 1,
 			lwip_thread, NULL);
+
+	httpd_init();
 
 	for (;;) {
 		console_poll();

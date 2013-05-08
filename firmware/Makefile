@@ -28,7 +28,7 @@ CSRC = $(PORTSRC) \
        $(CHIBIOS)/os/various/evtimer.c \
        $(CHIBIOS)/os/various/shell.c \
        $(CHIBIOS)/os/various/chprintf.c \
-       main.c usb_device.c console.c blink.c nrf24l01p.c data.c
+       main.c usb_device.c console.c blink.c nrf24l01p.c data.c net/httpd.c
 
 ASMSRC = $(PORTASM)
 
