@@ -30,6 +30,10 @@ struct data_entry {
 static struct Mutex data_mutex;
 static struct data_entry data_table[TABLE_SIZE];
 
+void data_json(BaseSequentialStream *chp)
+{
+}
+
 void data_dump(BaseSequentialStream *chp)
 {
 	struct data_entry *entry;

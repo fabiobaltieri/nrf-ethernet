@@ -100,9 +100,7 @@ static void path_json(struct net_seq_stream *net)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 200 OK\r\nContent-type: application/json\r\n\r\n");
-#if 0
 	data_json((BaseSequentialStream *)net);
-#endif
 }
 
 static void path_notfound(struct net_seq_stream *net)
