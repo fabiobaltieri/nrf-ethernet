@@ -69,11 +69,40 @@ struct path {
 	void (*handler)(struct net_seq_stream *net);
 };
 
+static struct path paths[];
+
 static void path_root(struct net_seq_stream *net)
+{
+	struct path *path = paths;
+	chprintf((BaseSequentialStream *)net,
+			"HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n");
+	chprintf((BaseSequentialStream *)net,
+			"<html>"
+			"<head><title>Available streams</title></head>"
+			"<body>");
+	for (path = paths; path->path != NULL; path++)
+		chprintf((BaseSequentialStream *)net,
+				"<a href=\"%s\">%s</a><br />",
+				path->path, path->path);
+	chprintf((BaseSequentialStream *)net,
+			"<body>"
+			"</html>");
+}
+
+static void path_raw(struct net_seq_stream *net)
+{
+	chprintf((BaseSequentialStream *)net,
+			"HTTP/1.1 200 OK\r\nContent-type: text/plain\r\n\r\n");
+	data_dump((BaseSequentialStream *)net);
+}
+
+static void path_json(struct net_seq_stream *net)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 200 OK\r\nContent-type: application/json\r\n\r\n");
-	data_dump((BaseSequentialStream *)net);
+#if 0
+	data_json((BaseSequentialStream *)net);
+#endif
 }
 
 static void path_notfound(struct net_seq_stream *net)
@@ -89,6 +118,8 @@ static void path_notfound(struct net_seq_stream *net)
 
 static struct path paths[] = {
 	{ "/", path_root },
+	{ "/raw", path_raw },
+	{ "/json", path_json },
 	{ NULL, NULL },
 };
 
