@@ -33,22 +33,22 @@ struct net_seq_stream {
 
 static msg_t net_put(void *instance, uint8_t c)
 {
-	struct net_seq_stream *seq = instance;
+	struct net_seq_stream *net = instance;
 
-	seq->buf[seq->count++] = c;
+	net->buf[net->count++] = c;
 
-	if (seq->count == sizeof(seq->buf)) {
-		netconn_write(seq->nc, seq->buf, seq->count, NETCONN_COPY);
-		seq->count = 0;
+	if (net->count == sizeof(net->buf)) {
+		netconn_write(net->nc, net->buf, net->count, NETCONN_COPY);
+		net->count = 0;
 	}
 
 	return c;
 }
 
-static void net_finalize(struct net_seq_stream *seq)
+static void net_finalize(struct net_seq_stream *net)
 {
-	if (seq->count)
-		netconn_write(seq->nc, seq->buf, seq->count, NETCONN_COPY);
+	if (net->count)
+		netconn_write(net->nc, net->buf, net->count, NETCONN_COPY);
 }
 
 const struct BaseSequentialStreamVMT net_vmt = {
