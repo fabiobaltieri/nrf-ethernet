@@ -27,15 +27,28 @@ static WORKING_AREA(httpd_wa, 512);
 struct net_seq_stream {
 	const struct BaseSequentialStreamVMT *vmt;
 	struct netconn *nc;
+	char buf[512];
+	int count;
 };
 
 static msg_t net_put(void *instance, uint8_t c)
 {
 	struct net_seq_stream *seq = instance;
 
-	netconn_write(seq->nc, (char *)&c, 1, NETCONN_COPY);
+	seq->buf[seq->count++] = c;
+
+	if (seq->count == sizeof(seq->buf)) {
+		netconn_write(seq->nc, seq->buf, seq->count, NETCONN_COPY);
+		seq->count = 0;
+	}
 
 	return c;
+}
+
+static void net_finalize(struct net_seq_stream *seq)
+{
+	if (seq->count)
+		netconn_write(seq->nc, seq->buf, seq->count, NETCONN_COPY);
 }
 
 const struct BaseSequentialStreamVMT net_vmt = {
@@ -91,7 +104,11 @@ static void httpd_process(struct netconn *nc)
 	blink(BLINK_RED, false);
 
 	net.nc = nc;
+	net.count = 0;
+	chprintf((BaseSequentialStream *)&net,
+			"HTTP/1.1 200 OK\r\nContent-type: application/json\r\n\r\n");
 	data_dump((BaseSequentialStream *)&net);
+	net_finalize(&net);
 
 	netconn_close(nc);
 	return;
