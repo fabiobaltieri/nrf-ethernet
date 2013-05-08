@@ -23,6 +23,7 @@ struct data_entry {
 	uint8_t ttl;
 	uint8_t board_id;
 	uint8_t msg_id;
+	uint8_t seq;
 	uint8_t data[DATA_SIZE];
 };
 
@@ -40,7 +41,8 @@ void data_dump(BaseSequentialStream *chp)
 		entry = &data_table[i];
 
 		chprintf(chp, "%2d %3d - ", i, entry->ttl);
-		chprintf(chp, "%.2x %.2x - ", entry->board_id, entry->msg_id);
+		chprintf(chp, "%.2x %.2x %.2x - ",
+				entry->board_id, entry->msg_id, entry->seq);
 		for (j = 0; j < DATA_SIZE; j++) {
 			chprintf(chp, " %.2x", entry->data[j]);
 			if (j + 1 == DATA_SIZE / 2)
@@ -57,6 +59,7 @@ static void update_entry(struct data_entry *entry, struct nrf_frame *msg)
 	entry->ttl = NEW_TTL;
 	entry->board_id = msg->board_id;
 	entry->msg_id = msg->msg_id;
+	entry->seq = msg->seq;
 	memcpy(entry->data, msg->msg.generic, DATA_SIZE);
 }
 
