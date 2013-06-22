@@ -32,6 +32,62 @@ static struct data_entry data_table[TABLE_SIZE];
 
 void data_json(BaseSequentialStream *chp)
 {
+	struct data_entry *entry;
+	int i;
+	union nrf_msg *msg;
+
+	chMtxLock(&data_mutex);
+
+	chprintf(chp, "{"
+			"\"device\": \"nrf-ethernet\","
+			"\"timestamp\": \"%d\",", chTimeNow());
+
+	chprintf(chp, "\"sensors\": [");
+
+	for (i = 0; i < TABLE_SIZE; i++) {
+		entry = &data_table[i];
+		msg = (union nrf_msg *)entry->data;
+
+		if (entry->ttl == 0)
+			continue;
+
+		chprintf(chp, "%s{"
+				"\"ttl\": %d,"
+				"\"board_id\": %d,"
+				"\"msg_id\": %d,"
+				"\"seq\": %d,",
+				(i == 0) ? "" : ",",
+				entry->ttl,
+				entry->board_id,
+				entry->msg_id,
+				entry->seq
+				);
+
+		switch (entry->msg_id) {
+		case NRF_MSG_ID_POWER:
+			chprintf(chp, "\"type\": \"power\",");
+			chprintf(chp, "\"power1\": %d,"
+					"\"power2\": %d,"
+					"\"power3\": %d,"
+					"\"power4\": %d,"
+					"\"battery\": %d",
+					msg->power.value[0],
+					msg->power.value[1],
+					msg->power.value[2],
+					msg->power.value[3],
+					msg->power.vbatt
+					);
+			break;
+		default:
+			chprintf(chp, "\"type\": \"unknown\"");
+		}
+
+		chprintf(chp, "}");
+	}
+
+	chprintf(chp, "]}");
+
+	chMtxUnlock();
 }
 
 void data_dump(BaseSequentialStream *chp)
