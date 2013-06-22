@@ -98,5 +98,5 @@
 
 void boardInit(void);
 
-#define pr_info(fmt, args...) chprintf((BaseSequentialStream *)&SD1, fmt, ## args)
-#define pr_debug(fmt, args...) chprintf((BaseSequentialStream *)&SD1, "%s: " fmt, __func__, ## args)
+#define pr_info(fmt, args...) chprintf((BaseSequentialStream *)&SDU1, fmt, ## args)
+#define pr_debug(fmt, args...) chprintf((BaseSequentialStream *)&SDU1, "%s: " fmt, __func__, ## args)
