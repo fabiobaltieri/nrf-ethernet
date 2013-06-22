@@ -1,11 +1,18 @@
 #include <ch.h>
 #include <hal.h>
-#include <usb_cdc.h>
+#include <serial_usb.h>
 
 #include "board.h"
 #include "usb_device.h"
 
 static SerialUSBDriver SDU1;
+
+/*
+ * Endpoints to be used for USBD1.
+ */
+#define USBD1_DATA_REQUEST_EP		1
+#define USBD1_DATA_AVAILABLE_EP		1
+#define USBD1_INTERRUPT_REQUEST_EP	2
 
 /* Device Descriptor */
 static const uint8_t vcom_device_descriptor_data[18] = {
@@ -81,7 +88,7 @@ static const uint8_t vcom_configuration_descriptor_data[67] = {
 					  Interface).                      */
 	/* Endpoint 2 Descriptor.*/
 	USB_DESC_ENDPOINT(
-			USB_CDC_INTERRUPT_REQUEST_EP | 0x80,
+			USBD1_INTERRUPT_REQUEST_EP | 0x80,
 			0x03,          /* bmAttributes (Interrupt).        */
 			0x0008,        /* wMaxPacketSize.                  */
 			0xFF),         /* bInterval.                       */
@@ -99,13 +106,13 @@ static const uint8_t vcom_configuration_descriptor_data[67] = {
 			0x00),         /* iInterface.                      */
 	/* Endpoint 3 Descriptor.*/
 	USB_DESC_ENDPOINT(
-			USB_CDC_DATA_AVAILABLE_EP,
+			USBD1_DATA_AVAILABLE_EP,
 			0x02,          /* bmAttributes (Bulk).             */
 			0x0040,        /* wMaxPacketSize.                  */
 			0x00),         /* bInterval.                       */
 	/* Endpoint 1 Descriptor.*/
 	USB_DESC_ENDPOINT(
-			USB_CDC_DATA_REQUEST_EP | 0x80,
+			USBD1_DATA_REQUEST_EP | 0x80,
 			0x02,          /* bmAttributes (Bulk).             */
 			0x0040,        /* wMaxPacketSize.                  */
 			0x00)          /* bInterval.                       */
@@ -241,11 +248,11 @@ static void usb_event(USBDriver *usbp, usbevent_t event)
 		 * Note, this callback is invoked from an ISR so I-Class functions
 		 * must be used.
 		 */
-		usbInitEndpointI(usbp, USB_CDC_DATA_REQUEST_EP, &ep1_config);
-		usbInitEndpointI(usbp, USB_CDC_INTERRUPT_REQUEST_EP, &ep2_config);
+		usbInitEndpointI(usbp, USBD1_DATA_REQUEST_EP, &ep1_config);
+		usbInitEndpointI(usbp, USBD1_INTERRUPT_REQUEST_EP, &ep2_config);
 
 		/* Resetting the state of the CDC subsystem. */
-		sduConfigureHookI(usbp);
+		sduConfigureHookI(&SDU1);
 
 		chSysUnlockFromIsr();
 		return;
@@ -290,7 +297,10 @@ static const USBConfig usbcfg = {
 
 /* CDC Configuration */
 static const SerialUSBConfig serusbcfg = {
-	&USBD1
+	&USBD1,
+	USBD1_DATA_REQUEST_EP,
+	USBD1_DATA_AVAILABLE_EP,
+	USBD1_INTERRUPT_REQUEST_EP
 };
 
 SerialUSBDriver *usb_get_serial_driver(void)
