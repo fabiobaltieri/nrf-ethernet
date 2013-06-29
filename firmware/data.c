@@ -34,6 +34,7 @@ void data_json(BaseSequentialStream *chp)
 {
 	struct data_entry *entry;
 	int i;
+	int count;
 	union nrf_msg *msg;
 
 	chMtxLock(&data_mutex);
@@ -44,6 +45,7 @@ void data_json(BaseSequentialStream *chp)
 
 	chprintf(chp, "\"sensors\": [");
 
+	count = 0;
 	for (i = 0; i < TABLE_SIZE; i++) {
 		entry = &data_table[i];
 		msg = (union nrf_msg *)entry->data;
@@ -56,7 +58,7 @@ void data_json(BaseSequentialStream *chp)
 				"\"board_id\": %d,"
 				"\"msg_id\": %d,"
 				"\"seq\": %d,",
-				(i == 0) ? "" : ",",
+				(count++ == 0) ? "" : ",",
 				entry->ttl,
 				entry->board_id,
 				entry->msg_id,
