@@ -152,8 +152,6 @@ static void update_table(struct nrf_frame *msg)
 		update_entry(&data_table[match], msg);
 	else if (first_free >= 0)
 		update_entry(&data_table[first_free], msg);
-	else
-		return;
 
 	chMtxUnlock();
 }
