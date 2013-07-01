@@ -78,7 +78,7 @@ static void path_root(struct net_seq_stream *net)
 			"HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n");
 	chprintf((BaseSequentialStream *)net,
 			"<html>"
-			"<head><title>Available streams</title></head>"
+			"<head><title>Available paths</title></head>"
 			"<body>");
 	for (path = paths; path->path != NULL; path++)
 		chprintf((BaseSequentialStream *)net,
