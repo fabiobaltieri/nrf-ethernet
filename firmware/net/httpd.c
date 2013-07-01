@@ -96,6 +96,10 @@ static void path_raw(struct net_seq_stream *net)
 	data_dump((BaseSequentialStream *)net);
 }
 
+static void path_sendraw(struct net_seq_stream *net)
+{
+}
+
 static void path_json(struct net_seq_stream *net)
 {
 	chprintf((BaseSequentialStream *)net,
@@ -118,6 +122,7 @@ static struct path paths[] = {
 	{ "/", path_root },
 	{ "/raw", path_raw },
 	{ "/json", path_json },
+	{ "/sendraw", path_sendraw },
 	{ NULL, NULL },
 };
 
