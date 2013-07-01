@@ -164,8 +164,6 @@ static void httpd_process(struct netconn *nc)
 		}
 	}
 
-	netbuf_delete(nb);
-
 	blink(BLINK_RED, false);
 
 	for (path = paths; path->path != NULL; path++)
@@ -178,6 +176,8 @@ static void httpd_process(struct netconn *nc)
 		path->handler(&net);
 	else
 		path_notfound(&net);
+
+	netbuf_delete(nb);
 
 	net_finalize(&net);
 
