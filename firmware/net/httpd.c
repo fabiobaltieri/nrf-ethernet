@@ -18,9 +18,9 @@ extern SerialUSBDriver SDU1;
 static struct Thread *httpd_th;
 static WORKING_AREA(httpd_wa, 512);
 
-#define GET_GET "GET "
-#define GET_ROOT "/"
-#define GET_VER " HTTP/1.1"
+#define HTTP_GET "GET "
+#define HTTP_ROOT "/"
+#define HTTP_VER " HTTP/1.1"
 
 /* basic sequential stream to push on tcp */
 
@@ -146,19 +146,19 @@ static void httpd_process(struct netconn *nc)
 	netbuf_data(nb, (void **)&buf, &len);
 
 	/* cut the initial "GET " */
-	if (len > strlen(GET_GET) &&
-	    strncmp(GET_GET, buf, strlen(GET_GET)) == 0) {
-			url = buf + strlen(GET_GET);
-			len -= strlen(GET_GET);
+	if (len > strlen(HTTP_GET) &&
+	    strncmp(HTTP_GET, buf, strlen(HTTP_GET)) == 0) {
+			url = buf + strlen(HTTP_GET);
+			len -= strlen(HTTP_GET);
 	} else {
 		goto bailout;
 	}
 
 	/* find the HTTP version and null terminate */
-	for (i = 0; i < len - strlen(GET_VER); i++) {
+	for (i = 0; i < len - strlen(HTTP_VER); i++) {
 		if (url[i] < ' ' || url[i] > '~')
 			goto bailout;
-		if (strncmp(GET_VER, url + i, strlen(GET_VER)) == 0) {
+		if (strncmp(HTTP_VER, url + i, strlen(HTTP_VER)) == 0) {
 			url[i] = '\0';
 			break;
 		}
