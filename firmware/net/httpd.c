@@ -20,7 +20,7 @@ static WORKING_AREA(httpd_wa, 512);
 
 #define HTTP_GET "GET "
 #define HTTP_ROOT "/"
-#define HTTP_VER " HTTP/1.1"
+#define HTTP_VER " HTTP/1.1\r\n"
 
 /* basic sequential stream to push on tcp */
 
