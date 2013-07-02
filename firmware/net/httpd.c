@@ -66,12 +66,12 @@ struct net_seq_stream net = {
 
 struct path {
 	char *path;
-	void (*handler)(struct net_seq_stream *net);
+	void (*handler)(struct net_seq_stream *net, char *url, char *hdr);
 };
 
 static struct path paths[];
 
-static void path_root(struct net_seq_stream *net)
+static void path_root(struct net_seq_stream *net, char *url, char *hdr)
 {
 	struct path *path = paths;
 	chprintf((BaseSequentialStream *)net,
@@ -89,25 +89,25 @@ static void path_root(struct net_seq_stream *net)
 			"</html>");
 }
 
-static void path_raw(struct net_seq_stream *net)
+static void path_raw(struct net_seq_stream *net, char *url, char *hdr)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 200 OK\r\nContent-type: text/plain\r\n\r\n");
 	data_dump((BaseSequentialStream *)net);
 }
 
-static void path_sendraw(struct net_seq_stream *net)
+static void path_sendraw(struct net_seq_stream *net, char *url, char *hdr)
 {
 }
 
-static void path_json(struct net_seq_stream *net)
+static void path_json(struct net_seq_stream *net, char *url, char *hdr)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 200 OK\r\nContent-type: application/json\r\n\r\n");
 	data_json((BaseSequentialStream *)net);
 }
 
-static void path_notfound(struct net_seq_stream *net)
+static void path_notfound(struct net_seq_stream *net, char *url, char *hdr)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 404 Not Found\r\n\r\n");
@@ -173,9 +173,9 @@ static void httpd_process(struct netconn *nc)
 	net.nc = nc;
 	net.count = 0;
 	if (path->handler)
-		path->handler(&net);
+		path->handler(&net, NULL, NULL);
 	else
-		path_notfound(&net);
+		path_notfound(&net, NULL, NULL);
 
 	netbuf_delete(nb);
 
