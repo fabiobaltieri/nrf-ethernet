@@ -22,6 +22,7 @@ static WORKING_AREA(httpd_wa, 512);
 #define HTTP_POST "POST "
 #define HTTP_ROOT "/"
 #define HTTP_VER " HTTP/1.1\r\n"
+#define HTTP_BREAK "\r\n\r\n"
 
 /* basic sequential stream to push on tcp */
 
@@ -67,12 +68,16 @@ struct net_seq_stream net = {
 
 struct path {
 	char *path;
-	void (*handler)(struct net_seq_stream *net, char *url, char *hdr);
+	void (*handler)(struct net_seq_stream *net,
+			char *url,
+			char *hdr,
+			char *data, int dlen);
 };
 
 static struct path paths[];
 
-static void path_root(struct net_seq_stream *net, char *url, char *hdr)
+static void path_root(struct net_seq_stream *net, char *url,
+		char *hdr, char *data, int dlen)
 {
 	struct path *path = paths;
 	chprintf((BaseSequentialStream *)net,
@@ -90,25 +95,29 @@ static void path_root(struct net_seq_stream *net, char *url, char *hdr)
 			"</html>");
 }
 
-static void path_raw(struct net_seq_stream *net, char *url, char *hdr)
+static void path_raw(struct net_seq_stream *net, char *url,
+		char *hdr, char *data, int dlen)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 200 OK\r\nContent-type: text/plain\r\n\r\n");
 	data_dump((BaseSequentialStream *)net);
 }
 
-static void path_sendraw(struct net_seq_stream *net, char *url, char *hdr)
+static void path_sendraw(struct net_seq_stream *net, char *url,
+		char *hdr, char *data, int dlen)
 {
 }
 
-static void path_json(struct net_seq_stream *net, char *url, char *hdr)
+static void path_json(struct net_seq_stream *net, char *url,
+		char *hdr, char *data, int dlen)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 200 OK\r\nContent-type: application/json\r\n\r\n");
 	data_json((BaseSequentialStream *)net);
 }
 
-static void path_notfound(struct net_seq_stream *net, char *url, char *hdr)
+static void path_notfound(struct net_seq_stream *net, char *url,
+		char *hdr, char *data, int dlen)
 {
 	chprintf((BaseSequentialStream *)net,
 			"HTTP/1.1 404 Not Found\r\n\r\n");
@@ -136,6 +145,9 @@ static void httpd_process(struct netconn *nc)
 	int ret;
 	uint16_t len;
 	char *url;
+	char *hdr;
+	char *data;
+	int dlen;
 	int i;
 	struct path *path;
 
@@ -169,6 +181,25 @@ static void httpd_process(struct netconn *nc)
 		}
 	}
 
+	/* find header pointer and length */
+	hdr = url + i + strlen(HTTP_VER);
+	dlen = len - i - strlen(HTTP_VER);
+
+	/* find end of headers and data length */
+	for (i = 0; i < len - strlen(HTTP_BREAK); i++) {
+		if (hdr[i] < ' ' || hdr[i] > '~')
+			if (hdr[i] != '\r' && hdr[i] != '\n')
+				goto bailout;
+		if (strncmp(HTTP_BREAK, hdr + i, strlen(HTTP_BREAK)) == 0) {
+			hdr[i] = '\0';
+			break;
+		}
+	}
+
+	/* find data pointer and length */
+	data = hdr + i + strlen(HTTP_BREAK);
+	dlen = dlen - i - strlen(HTTP_BREAK);
+
 	blink(BLINK_RED, false);
 
 	for (path = paths; path->path != NULL; path++)
@@ -178,9 +209,9 @@ static void httpd_process(struct netconn *nc)
 	net.nc = nc;
 	net.count = 0;
 	if (path->handler)
-		path->handler(&net, NULL, NULL);
+		path->handler(&net, url, hdr, data, dlen);
 	else
-		path_notfound(&net, NULL, NULL);
+		path_notfound(&net, url, hdr, data, dlen);
 
 	netbuf_delete(nb);
 
