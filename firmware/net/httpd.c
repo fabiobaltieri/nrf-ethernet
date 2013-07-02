@@ -19,6 +19,7 @@ static struct Thread *httpd_th;
 static WORKING_AREA(httpd_wa, 512);
 
 #define HTTP_GET "GET "
+#define HTTP_POST "POST "
 #define HTTP_ROOT "/"
 #define HTTP_VER " HTTP/1.1\r\n"
 
@@ -150,6 +151,10 @@ static void httpd_process(struct netconn *nc)
 	    strncmp(HTTP_GET, buf, strlen(HTTP_GET)) == 0) {
 			url = buf + strlen(HTTP_GET);
 			len -= strlen(HTTP_GET);
+	} else if (len > strlen(HTTP_POST) &&
+	    strncmp(HTTP_POST, buf, strlen(HTTP_POST)) == 0) {
+			url = buf + strlen(HTTP_POST);
+			len -= strlen(HTTP_POST);
 	} else {
 		goto bailout;
 	}
