@@ -10,6 +10,7 @@
 #include "../board.h"
 #include "../blink.h"
 #include "../data.h"
+#include "../nrf24l01p.h"
 
 #define HTTPD_PORT 80
 
@@ -103,9 +104,56 @@ static void path_raw(struct net_seq_stream *net, char *url,
 	data_dump((BaseSequentialStream *)net);
 }
 
+static int nibble_valid(char ch)
+{
+	if ((ch >= '0' && ch <= '9') ||
+	    (ch >= 'a' && ch <= 'f') ||
+	    (ch >= 'A' && ch <= 'F'))
+		return 1;
+	else
+		return 0;
+}
+
+static char get_nibble(char ch)
+{
+	if (ch >= '0' && ch <= '9')
+		return ch - '0';
+	else if (ch >= 'a' && ch <= 'z')
+		return ch - 'a' + 10;
+	else if (ch >= 'A' && ch <= 'Z')
+		return ch - 'A' + 10;
+	return 0;
+}
+
 static void path_sendraw(struct net_seq_stream *net, char *url,
 		char *hdr, char *data, int dlen)
 {
+	int i;
+	struct nrf_raw_msg msg;
+
+	chprintf((BaseSequentialStream *)net,
+			"HTTP/1.1 200 OK\r\nContent-type: text/plain\r\n\r\n");
+
+	if (dlen != PAYLOADSZ * 2)
+		goto out;
+
+	for (i = 0; i < PAYLOADSZ; i++) {
+		if (!nibble_valid(data[i * 2]) ||
+		    !nibble_valid(data[i * 2 + 1]))
+			goto out;
+		msg.data[i] = (get_nibble(data[i * 2]) << 4) |
+			get_nibble(data[i * 2 + 1]);
+	}
+
+	nrf_send(&msg);
+
+	chprintf((BaseSequentialStream *)net,
+			"OK\r\n");
+	return;
+
+out:
+	chprintf((BaseSequentialStream *)net,
+			"ERR\r\n");
 }
 
 static void path_json(struct net_seq_stream *net, char *url,
