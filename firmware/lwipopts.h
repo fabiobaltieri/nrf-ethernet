@@ -980,6 +980,8 @@
  */
 #define TCPIP_THREAD_NAME              "tcpip_thread"
 
+#define LWIP_THREAD_STACK_SIZE              1536
+
 /**
  * TCPIP_THREAD_STACKSIZE: The stack size used by the main tcpip thread.
  * The stack size value itself is platform-dependent, but is passed to
