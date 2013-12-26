@@ -8,6 +8,7 @@
 #include "nrf24l01p.h"
 #include "data.h"
 #include "nrf_frames.h"
+#include "net/rawd.h"
 
 static struct Thread *data_rx_th;
 static WORKING_AREA(data_rx_wa, 64);
@@ -165,6 +166,7 @@ static msg_t data_rx(void *data)
 	for (;;) {
 		nrf_recv((struct nrf_raw_msg *)&msg);
 		update_table(&msg);
+		rawd_push(&msg);
 	}
 
 	return 0;

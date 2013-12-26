@@ -8,9 +8,11 @@
 #include "console.h"
 #include "blink.h"
 #include "nrf24l01p.h"
+#include "nrf_frames.h"
 #include "data.h"
 
 #include "net/httpd.h"
+#include "net/rawd.h"
 
 /* GPIO initialization values */
 const PALConfig pal_default_config = {
@@ -131,6 +133,7 @@ int main(void)
 			lwip_thread, NULL);
 
 	httpd_init();
+	rawd_init();
 
 	for (;;) {
 		console_poll();
