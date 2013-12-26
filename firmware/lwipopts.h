@@ -202,7 +202,7 @@
  * MEMP_NUM_TCP_PCB: the number of simulatenously active TCP connections.
  * (requires the LWIP_TCP option)
  */
-#define MEMP_NUM_TCP_PCB                5
+#define MEMP_NUM_TCP_PCB                10
 
 /**
  * MEMP_NUM_TCP_PCB_LISTEN: the number of listening TCP connections.
@@ -265,7 +265,7 @@
  * MEMP_NUM_NETCONN: the number of struct netconns.
  * (only needed if you use the sequential API, like api_lib.c)
  */
-#define MEMP_NUM_NETCONN                4
+#define MEMP_NUM_NETCONN                10
 
 /**
  * MEMP_NUM_TCPIP_MSG_API: the number of struct tcpip_msg, which are used
