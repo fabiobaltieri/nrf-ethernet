@@ -12,6 +12,8 @@
 #include "../data.h"
 #include "../nrf24l01p.h"
 
+#include "httpd.h"
+
 #define HTTPD_PORT 80
 
 extern SerialUSBDriver SDU1;
